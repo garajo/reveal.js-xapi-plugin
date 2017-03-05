@@ -1,0 +1,32 @@
+{
+  "name": "reveal.js-xapi-plugin",
+  "version": "0.0.0",
+  "description": "Plugin for xAPI",
+  "main": "index.js",
+  "scripts": {
+    "build:plugin": "webpack ./index.js --output-path reveal.js/plugin/xapi/ --output-filename xapi.js",
+    "dist": "webpack ./index.js --output-path dist/plugin/xapi/ --output-filename xapi.js",
+    "test": "echo 'need test'",
+    "dev:setup": "bash ./scripts/setup-reveal-dev.sh",
+    "dev": "npm run dev:mock & npm run dev:reveal:start && npm run dev:plugin",
+    "dev:mock": "nodemon -V --exitcrash -w ./mocks/*.js -w ./mocks/*.pug ./node_modules/.bin/ws -p 7000 -f",
+    "dev:plugin": "npm run build:plugin -- -w",
+    "dev:reveal:start": "cd reveal.js && npm start"
+  },
+  "keywords": [
+    "reveal.js",
+    "xapi",
+    "plugin"
+  ],
+  "author": "garajo",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.11.0",
+    "pug": "^2.0.0-beta11",
+    "tincanjs": "^0.50.0",
+    "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "ramda": "^0.23.0"
+  }
+}
