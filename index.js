@@ -12,7 +12,6 @@ const RevealxAPI = (function() {
   // require('./localdev/testLrsEndpoint')
 
   const TinCan = require('tincanjs')
-  console.log('Object.keys(TinCan)', Object.keys(TinCan))
 
   const classes = R.omit(["DEBUG", "disableDebug", "enableDebug", "versions", "defaultEncoding", "Utils", "LRS"], TinCan)
 
@@ -50,10 +49,6 @@ const defaults = {
 const { xapi } = Reveal.getConfig()
 const { config, slides } = xapi
 
-const statement = new TinCan.Statement(Object.assign({}, defaults.statement, config.statement));
-
-console.log('statement', statement)
-
   lrs = new TinCan.LRS(
       {
           endpoint: "http://localhost:7000",
@@ -62,28 +57,23 @@ console.log('statement', statement)
           allowFail: false,
       }
   )
-  console.log('lrs', lrs)
-
-  // console.log('lrs.retrieveStatement(', lrs.retrieveStatement(statement.id))
-  // console.log('lrs.retrieveActivity', lrs.retrieveState())
-  // console.log('Reveal', Reveal)
-  // console.log('Reveal', Reveal.getConfig())
-  // Reveal.showHelp();
 
   Reveal.addEventListener( 'slidechanged', function( event ) {
     if (Reveal.isLastSlide()) {
       console.log('Hooray, you\'re done!')
-      saveStatements()
+      const endStatement = new TinCan.Statement(Object.assign({}, defaults.statement, config.statement));
+      saveStatements([endStatement])
     } else {
       // console.log(event.previousSlide, event.currentSlide, event.indexh, event.indexv, Reveal.getProgress())
-
+      console.log('progression: ', Reveal.getProgress().toLocaleString("en", { style: "percent" }))
     }
   })
 
-const saveStatements = () => {
-  console.log('saving statement', statement)
+const saveStatements = (statements) => {
+  if (!Array.isArray(statements)) { throw new Error('expecting array') }
+
   lrs.saveStatements(
-    [statement],
+    statements,
     {
       callback: function (err, xhr) {
         if (err !== null) {
