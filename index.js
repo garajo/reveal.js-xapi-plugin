@@ -50,10 +50,6 @@ const defaults = {
 const { xapi } = Reveal.getConfig()
 const { config, slides } = xapi
 
-const statement = new TinCan.Statement(Object.assign({}, defaults.statement, config.statement));
-
-console.log('statement', statement)
-
   lrs = new TinCan.LRS(
       {
           endpoint: "http://localhost:7000",
@@ -62,25 +58,19 @@ console.log('statement', statement)
           allowFail: false,
       }
   )
-  console.log('lrs', lrs)
-
-  // console.log('lrs.retrieveStatement(', lrs.retrieveStatement(statement.id))
-  // console.log('lrs.retrieveActivity', lrs.retrieveState())
-  // console.log('Reveal', Reveal)
-  // console.log('Reveal', Reveal.getConfig())
-  // Reveal.showHelp();
 
   Reveal.addEventListener( 'slidechanged', function( event ) {
     if (Reveal.isLastSlide()) {
       console.log('Hooray, you\'re done!')
-      saveStatements()
+      const endStatement = new TinCan.Statement(Object.assign({}, defaults.statement, config.statement));
+      saveStatements(endStatement)
     } else {
       // console.log(event.previousSlide, event.currentSlide, event.indexh, event.indexv, Reveal.getProgress())
 
     }
   })
 
-const saveStatements = () => {
+const saveStatements = (statement) => {
   console.log('saving statement', statement)
   lrs.saveStatements(
     [statement],

@@ -10,7 +10,7 @@
     "dev": "npm run dev:mock & npm run dev:plugin & npm run dev:reveal:start",
     "dev:docserver": "http-server ./localdev/xapidocs/",
     "dev:plugin": "webpack ./index.js --output-path reveal.js/plugin/xapi/ --output-filename xapi.js -w",
-    "dev:mock": "nodemon -V --exitcrash -w ./mocks/*.js -w ./mocks/*.pug ./node_modules/.bin/ws -p 7000",
+    "dev:mock": "./node_modules/.bin/ws -p 7000",
     "dev:reveal:start": "cd reveal.js && npm start"
   },
   "keywords": [
