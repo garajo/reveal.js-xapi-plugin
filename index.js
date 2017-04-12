@@ -55,7 +55,7 @@ const statement = new TinCan.Statement(
 
   lrs = new TinCan.LRS(
       {
-          endpoint: "http://localhost:7000/",
+          endpoint: "http://localhost:7000/statements",
           username: "<Test User>",
           password: "<Test Password>",
           allowFail: false,
