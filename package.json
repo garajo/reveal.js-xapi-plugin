@@ -4,13 +4,13 @@
   "description": "Plugin for xAPI",
   "main": "index.js",
   "scripts": {
-    "build:plugin": "webpack ./index.js --output-path reveal.js/plugin/xapi/ --output-filename xapi.js",
     "dist": "webpack ./index.js --output-path dist/plugin/xapi/ --output-filename xapi.js",
     "test": "echo 'need test'",
     "dev:setup": "bash ./scripts/setup-reveal-dev.sh",
-    "dev": "npm run dev:mock & npm run dev:reveal:start && npm run dev:plugin",
+    "dev": "npm run dev:mock & npm run dev:plugin & npm run dev:reveal:start",
+    "dev:docserver": "http-server ./localdev/xapidocs/",
+    "dev:plugin": "webpack ./index.js --output-path reveal.js/plugin/xapi/ --output-filename xapi.js -w",
     "dev:mock": "nodemon -V --exitcrash -w ./mocks/*.js -w ./mocks/*.pug ./node_modules/.bin/ws -p 7000",
-    "dev:plugin": "npm run build:plugin -- -w",
     "dev:reveal:start": "cd reveal.js && npm start"
   },
   "keywords": [

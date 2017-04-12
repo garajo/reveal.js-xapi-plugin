@@ -12,16 +12,12 @@ const RevealxAPI = (function() {
   // require('./localdev/testLrsEndpoint')
 
   const TinCan = require('tincanjs')
-/*
   console.log('Object.keys(TinCan)', Object.keys(TinCan))
-  for (var prop in R.omit(["DEBUG","enableDebug","disableDebug","versions","Utils"], TinCan)) {
-    const instance = new TinCan[prop]({'endpoint': 'foo'})
-    console.log('-----')
-    console.log(JSON.stringify(R.omit(['__proto__'], instance), null, 4))
-    console.log(instance)
-  }
 
-*/
+  const classes = R.omit(["DEBUG", "disableDebug", "enableDebug", "versions", "defaultEncoding", "Utils", "LRS"], TinCan)
+
+  // R.forEach(ea => console.log(new ea()))(R.values(classes))
+
 
 // https://registry.tincanapi.com/
 // http://xapi.vocab.pub/datasets/adl/
@@ -29,33 +25,38 @@ const RevealxAPI = (function() {
 //
 console.log('adlVocab', adlVocab)
 
+const defaults = {
+  lrs: {
+    endpoint: "http://localhost:7000/",
+    username: "<Test User>",
+    password: "<Test Password>",
+    allowFail: false,
+  },
+  statement: {
+    actor: {
+      mbox: "mailto:garrickajo@gmail.com",
+      name: "Curious George",
+    },
+    verb: {
+      id: "http://adlnet.gov/expapi/verbs/completed"
+    },
+    object: {
+      id: "http://adlnet.gov/expapi/activities/lesson",
+      // id: "http://adlnet.gov/expapi/activities/media"
+    }
+  }
+}
+
 const { xapi } = Reveal.getConfig()
 const { config, slides } = xapi
-// console.log('xapi', xapi)
-console.log('config', config)
 
-const statement = new TinCan.Statement(
-    {
-      actor: {
-        mbox: "mailto:garrickajo@gmail.com",
-        name: "Curious George",
-      },
-      verb: {
-        id: "http://adlnet.gov/expapi/verbs/completed"
-      },
-      target: {
-        id: "http://adlnet.gov/expapi/activities/lesson",
-        // id: "http://adlnet.gov/expapi/activities/media"
-      }
-    }
-  );
+const statement = new TinCan.Statement(Object.assign({}, defaults.statement, config.statement));
 
-  console.log('statement', statement)
-  console.log('statement', statement.target.toString())
+console.log('statement', statement)
 
   lrs = new TinCan.LRS(
       {
-          endpoint: "http://localhost:7000/statements",
+          endpoint: "http://localhost:7000",
           username: "<Test User>",
           password: "<Test Password>",
           allowFail: false,
@@ -74,13 +75,15 @@ const statement = new TinCan.Statement(
       console.log('Hooray, you\'re done!')
       saveStatements()
     } else {
-      console.log(event.previousSlide, event.currentSlide, event.indexh, event.indexv, Reveal.getProgress())
+      // console.log(event.previousSlide, event.currentSlide, event.indexh, event.indexv, Reveal.getProgress())
+
     }
   })
 
 const saveStatements = () => {
-  lrs.saveStatement(
-    statement,
+  console.log('saving statement', statement)
+  lrs.saveStatements(
+    [statement],
     {
       callback: function (err, xhr) {
         if (err !== null) {
@@ -96,11 +99,10 @@ const saveStatements = () => {
         }
 
         console.log("Statement saved");
-        // TOOO: do something with success (possibly ignore)
+        // TODO: do something with success (possibly ignore)
       }
     }
   );
 }
-
 
 })()
