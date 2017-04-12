@@ -33,7 +33,7 @@ const defaults = {
   },
   statement: {
     actor: {
-      mbox: "mailto:garrickajo@gmail.com",
+      mbox: "mailto:george@example.com",
       name: "Curious George",
     },
     verb: {
@@ -60,8 +60,8 @@ const { config, slides } = xapi
 
   Reveal.addEventListener( 'slidechanged', function( event ) {
     if (Reveal.isLastSlide()) {
-      console.log('Hooray, you\'re done!')
       const endStatement = new TinCan.Statement(Object.assign({}, defaults.statement, config.statement));
+      console.log('Hooray, you\'re done!', endStatement)
       saveStatements([endStatement])
     } else {
       // console.log(event.previousSlide, event.currentSlide, event.indexh, event.indexv, Reveal.getProgress())
