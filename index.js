@@ -1,6 +1,31 @@
 const R = require('ramda')
 const adlVocab = require('./localdev/adl_vocab.json')
 
+const { xapi } = Reveal.getConfig()
+const { config, events } = xapi
+const TinCan = require('tincanjs')
+
+const defaults = {
+  lrs: {
+    endpoint: "http://localhost:7000/",
+    username: "<Test User>",
+      password: "<Test Password>",
+        allowFail: false,
+      },
+      statement: {
+        actor: {
+          mbox: "mailto:george@example.com",
+          name: "Curious George",
+        },
+        verb: {
+          id: "http://adlnet.gov/expapi/verbs/completed"
+        },
+        object: {
+          id: "http://adlnet.gov/expapi/activities/lesson",
+          // id: "http://adlnet.gov/expapi/activities/media"
+        }
+      }
+    }
 // features
 // - works with existing Reveal presentations
 // - sends to endpoint or back to Reveal and presentation
@@ -9,90 +34,57 @@ const adlVocab = require('./localdev/adl_vocab.json')
 //
 
 const RevealxAPI = (function() {
-  // require('./localdev/testLrsEndpoint')
+  console.log('adlVocab', adlVocab)
 
-  const TinCan = require('tincanjs')
+  const consumestate = new Uint8Array(Reveal.getTotalSlides())
 
-  const classes = R.omit(["DEBUG", "disableDebug", "enableDebug", "versions", "defaultEncoding", "Utils", "LRS"], TinCan)
+    lrs = new TinCan.LRS(
+      R.merge({
+        endpoint: "http://localhost:7000",
+        username: "<Test User>",
+        password: "<Test Password>",
+        allowFail: false,
+    }, events))
 
-  // R.forEach(ea => console.log(new ea()))(R.values(classes))
+    Reveal.addEventListener( 'slidechanged', function( event ) {
+      consumestate[event.indexh] = 1
 
-
-// https://registry.tincanapi.com/
-// http://xapi.vocab.pub/datasets/adl/
-// ? https://www.w3.org/TR/activitystreams-vocabulary/
-//
-console.log('adlVocab', adlVocab)
-
-const defaults = {
-  lrs: {
-    endpoint: "http://localhost:7000/",
-    username: "<Test User>",
-    password: "<Test Password>",
-    allowFail: false,
-  },
-  statement: {
-    actor: {
-      mbox: "mailto:george@example.com",
-      name: "Curious George",
-    },
-    verb: {
-      id: "http://adlnet.gov/expapi/verbs/completed"
-    },
-    object: {
-      id: "http://adlnet.gov/expapi/activities/lesson",
-      // id: "http://adlnet.gov/expapi/activities/media"
-    }
-  }
-}
-
-const { xapi } = Reveal.getConfig()
-const { config, slides } = xapi
-
-  lrs = new TinCan.LRS(
-      {
-          endpoint: "http://localhost:7000",
-          username: "<Test User>",
-          password: "<Test Password>",
-          allowFail: false,
+      if (consumestate.every(e => e===1)) {
+        const endStatement = new TinCan.Statement(
+          R.merge(defaults.statement, config.statement)
+        )
+        console.log('Hooray, you\'re done!', endStatement)
+        saveStatements([endStatement])
       }
-  )
+      else {
+        const completePercStr = (R.countBy(e => e)(consumestate)[1]/consumestate.length).toLocaleString("en", { style: "percent" })
+        console.log(`You have completed ${completePercStr} of the lesson.`)
+      }
+    })
 
-  Reveal.addEventListener( 'slidechanged', function( event ) {
-    if (Reveal.isLastSlide()) {
-      const endStatement = new TinCan.Statement(Object.assign({}, defaults.statement, config.statement));
-      console.log('Hooray, you\'re done!', endStatement)
-      saveStatements([endStatement])
-    } else {
-      // console.log(event.previousSlide, event.currentSlide, event.indexh, event.indexv, Reveal.getProgress())
-      console.log('progression: ', Reveal.getProgress().toLocaleString("en", { style: "percent" }))
-    }
-  })
+  const saveStatements = (statements) => {
+    if (!Array.isArray(statements)) { throw new Error('expecting array') }
 
-const saveStatements = (statements) => {
-  if (!Array.isArray(statements)) { throw new Error('expecting array') }
+    lrs.saveStatements(
+      statements,
+      {
+        callback: function (err, xhr) {
+          if (err !== null) {
+            if (xhr !== null) {
+              console.log("Failed to save statement: " + xhr.responseText + " (" + xhr.status + ")")
+              // TODO: do something with error, didn't save statement
+              return
+            }
 
-  lrs.saveStatements(
-    statements,
-    {
-      callback: function (err, xhr) {
-        if (err !== null) {
-          if (xhr !== null) {
-            console.log("Failed to save statement: " + xhr.responseText + " (" + xhr.status + ")");
+            console.log("Failed to save statement: " + err)
             // TODO: do something with error, didn't save statement
-            return;
+            return
           }
 
-          console.log("Failed to save statement: " + err);
-          // TODO: do something with error, didn't save statement
-          return;
+          console.log("Statement saved")
+          // TODO: do something with success (possibly ignore)
         }
-
-        console.log("Statement saved");
-        // TODO: do something with success (possibly ignore)
       }
-    }
-  );
-}
-
+    )
+  }
 })()
