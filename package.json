@@ -6,8 +6,9 @@
   "scripts": {
     "dist": "webpack --config ./webpack.config.js",
     "test": "echo 'need test'",
-    "dev:setup": "bash ./scripts/setup-reveal-dev.sh",
-    "dev": "npm run dev:mock & npm run dev:plugin & npm run dev:reveal:start",
+    "postinstall": "bash ./scripts/setup-reveal-dev.sh",
+    "start": "npm run dev:mock & npm run dev:plugin & npm run dev:reveal:start",
+    "dev": "npm start",
     "dev:docserver": "http-server ./localdev/xapidocs/",
     "dev:plugin": "webpack --config ./webpack.config.js -w",
     "dev:mock": "./node_modules/.bin/ws -p 7000",

@@ -9,4 +9,3 @@ cp -r -f ./dev_env/mocks ./
 cd reveal.js
 grunt css-core
 cd ..
-npm run build:plugin

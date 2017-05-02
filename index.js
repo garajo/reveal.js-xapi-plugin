@@ -9,7 +9,7 @@ const adlVocab = require('./localdev/adl_vocab.json')
 const TinCan = require('tincanjs')
 // console.log('Reveal', Reveal)
 // const { xapi: userconfig } = { xapi } = Reveal.getConfig()
-const userconfig = Reveal.getConfig().xap
+const userconfig = Reveal.getConfig().xapi
 
 /****************
   App Config
