@@ -25,8 +25,8 @@ const defaults = {
     },
   statement: {
     actor: {
-      mbox: "mailto:george@example.com",
-      name: "Curious George",
+      mbox: "mailto:anonymous@example.com",
+      name: "anonymous",
     },
     verb: {
       id: "http://adlnet.gov/expapi/verbs/completed"
