@@ -4,12 +4,12 @@
   "description": "Plugin for xAPI",
   "main": "index.js",
   "scripts": {
-    "dist": "webpack ./index.js --output-path dist/plugin/xapi/ --output-filename xapi.js",
+    "dist": "webpack --config ./webpack.config.js",
     "test": "echo 'need test'",
     "dev:setup": "bash ./scripts/setup-reveal-dev.sh",
     "dev": "npm run dev:mock & npm run dev:plugin & npm run dev:reveal:start",
     "dev:docserver": "http-server ./localdev/xapidocs/",
-    "dev:plugin": "webpack ./index.js --output-path reveal.js/plugin/xapi/ --output-filename xapi.js -w",
+    "dev:plugin": "webpack --config ./webpack.config.js -w",
     "dev:mock": "./node_modules/.bin/ws -p 7000",
     "dev:reveal:start": "cd reveal.js && npm start"
   },
@@ -21,12 +21,16 @@
   "author": "garajo",
   "license": "ISC",
   "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-preset-node6": "^11.0.0",
+    "local-web-server": "^1.2.7",
     "nodemon": "^1.11.0",
     "pug": "^2.0.0-beta11",
+    "ramda": "^0.23.0",
     "tincanjs": "^0.50.0",
     "webpack": "^2.2.1"
-  },
-  "dependencies": {
-    "ramda": "^0.23.0"
   }
 }
