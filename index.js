@@ -7,49 +7,29 @@
 const R = require('ramda')
 const adlVocab = require('./localdev/adl_vocab.json')
 const TinCan = require('tincanjs')
-// console.log('Reveal', Reveal)
-// const { xapi: userconfig } = { xapi } = Reveal.getConfig()
 const userconfig = Reveal.getConfig().xapi
-
-/****************
-  App Config
-
-*/
 
 const defaults = {
   lrs: {
-    endpoint: "http://localhost:7000/",
-    username: "<Test User>",
-    password: "<Test Password>",
-      allowFail: false,
-    },
+    endpoint: "<Endpoint>",
+    username: "<User>",
+    password: "<Password>",
+    allowFail: false,
+  },
   statement: {
     actor: {
       mbox: "mailto:anonymous@example.com",
       name: "anonymous",
     },
-    verb: {
-      id: "http://adlnet.gov/expapi/verbs/completed"
-    },
-    object: {
-      id: "http://adlnet.gov/expapi/activities/lesson",
-      // id: "http://adlnet.gov/expapi/activities/media"
-    }
   },
-  state: {
-
-  }
 }
 
-
-/****************
-  plugin
-
-*/
-
-
+const mergeCompletedStatement = (k, l, r) => (k == 'statement') ? R.merge(l, r) : r
 const plugin = (function() {
-  return require('./lib/RevealxAPI').default(Reveal, userconfig)
+  const instance = require('./lib/RevealxAPI').default(Reveal, R.mergeWithKey(mergeCompletedStatement, defaults, userconfig))
+  return instance
 })()
+
+window.temp = plugin
 
 module.exports = plugin
