@@ -5,13 +5,11 @@
 // - records statements automatically through navigation
 //
 const R = require('ramda')
-const adlVocab = require('./localdev/adl_vocab.json')
+const adlVocab = require('./data/adl_vocab.json')
 const TinCan = require('tincanjs')
 const userconfig = Reveal.getConfig().xapi
 
 console.log('Reveal.getConfig()', Reveal.getConfig())
-
-
 console.log('userconfig', userconfig)
 
 
