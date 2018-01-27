@@ -33,17 +33,20 @@ const xapi_config = {
   }
 }
 
-const index_html = fs.readFileSync('./revealJS/index.html').toString()
+let index_html = fs.readFileSync('./revealJS/index.html').toString()
 
 const insert_plugin = /dependencies: \[/
-  const insert_config = /dependencies: \[[\s\S]*?\]/gm
-  
-  let matched_deps_str = index_html.match(insert_config)[0]
-  matched_deps_str = matched_deps_str.slice(0, -1)
-  
-  matched_deps_str = matched_deps_str.trim() + ',\n{ xapi: ' + JSON.stringify(xapi_config.xapi, null, 2) + '}\n]'
-  
-  const rewrite = index_html.replace(insert_config, matched_deps_str)  
+const insert_config = /dependencies: \[[\s\S]*?\]/gm
+
+
+index_html = index_html.replace(insert_plugin, `dependencies: [\n${JSON.stringify(add_plugin)},\n`)  
+
+let matched_deps_str = index_html.match(insert_config)[0]
+matched_deps_str = matched_deps_str.slice(0, -1)
+
+matched_deps_str = matched_deps_str.trim() + ',\n{ xapi: ' + JSON.stringify(xapi_config.xapi, null, 2) + '}\n]'
+
+const rewrite = index_html.replace(insert_config, matched_deps_str)
 
 
 fs.writeFileSync('./revealJS/index.html', rewrite)
