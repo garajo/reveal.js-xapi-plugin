@@ -4,7 +4,7 @@
   "description": "Plugin for xAPI",
   "main": "index.js",
   "scripts": {
-    "dist": "webpack --config ./webpack.config.js",
+    "dist": "rm ./revealJS/plugin/xapi/xapi.js & webpack --config ./webpack.config.js",
     "test": "echo 'need test'",
     "preinstall": "bash ./scripts/get-reveal.sh",
     "start": "npm run dev:plugin & npm run dev:reveal:start",

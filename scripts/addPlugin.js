@@ -29,6 +29,32 @@ const xapi_config = {
           console.log('foo')
         },
       },
+    },
+    events: {
+      slidechanged: {
+        every: () => {
+          console.log('every')
+
+        },
+
+        first: () => {
+          console.log('first')
+
+        },
+
+        last: () => {
+          console.log('last')
+
+        },
+        1: () => {
+          console.log('1')
+
+        },
+        2.1: () => {
+          console.log('2.1')
+
+        }
+      }
     }
   }
 }
@@ -44,9 +70,10 @@ index_html = index_html.replace(insert_plugin, `dependencies: [\n${JSON.stringif
 let matched_deps_str = index_html.match(insert_config)[0]
 matched_deps_str = matched_deps_str.slice(0, -1)
 
-matched_deps_str = matched_deps_str.trim() + ',\n{ xapi: ' + JSON.stringify(xapi_config.xapi, null, 2) + '}\n]'
+// matched_deps_str = matched_deps_str.trim() + ',\n{ xapi: ' + JSON.stringify(xapi_config.xapi, null, 2) + '}\n]'
+
+matched_deps_str = matched_deps_str.trim() + '\n],\nxapi: ' + JSON.stringify(xapi_config.xapi, null, 2)
 
 const rewrite = index_html.replace(insert_config, matched_deps_str)
-
 
 fs.writeFileSync('./revealJS/index.html', rewrite)
