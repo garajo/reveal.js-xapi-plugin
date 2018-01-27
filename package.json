@@ -6,13 +6,12 @@
   "scripts": {
     "dist": "webpack --config ./webpack.config.js",
     "test": "echo 'need test'",
-    "preinstall": "bash ./scripts/setup-reveal-dev.sh",
-    "start": "npm run dev:mock & npm run dev:plugin & npm run dev:reveal:start",
+    "preinstall": "bash ./scripts/get-reveal.sh",
+    "start": "npm run dev:plugin & npm run dev:reveal:start",
     "dev": "npm start",
     "dev:docserver": "http-server ./localdev/xapidocs/",
     "dev:plugin": "webpack --config ./webpack.config.js -w",
-    "dev:mock": "./node_modules/.bin/ws -p 7000",
-    "dev:reveal:start": "cd reveal.js && npm start"
+    "dev:reveal:start": "./node_modules/.bin/http-server -p 8084 revealJS"
   },
   "keywords": [
     "reveal.js",
@@ -33,5 +32,7 @@
     "ramda": "^0.23.0",
     "tincanjs": "^0.50.0",
     "webpack": "^2.2.1"
+  },
+  "dependencies": {
   }
 }

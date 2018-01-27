@@ -3,7 +3,7 @@ const path = require('path')
 const config = {
   entry: './index.js',
   output: {
-    path: path.resolve(__dirname, 'reveal.js/plugin/xapi/'),
+    path: path.resolve(__dirname, 'revealJS/plugin/xapi/'),
     filename: 'xapi.js',
     library: 'RevealXAPI',
     libraryTarget: 'var',

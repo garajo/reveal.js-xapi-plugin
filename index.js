@@ -9,6 +9,12 @@ const adlVocab = require('./localdev/adl_vocab.json')
 const TinCan = require('tincanjs')
 const userconfig = Reveal.getConfig().xapi
 
+console.log('Reveal.getConfig()', Reveal.getConfig())
+
+
+console.log('userconfig', userconfig)
+
+
 const defaults = {
   lrs: {
     endpoint: "<Endpoint>",
@@ -23,7 +29,6 @@ const defaults = {
     },
   },
 }
-
 const mergeCompletedStatement = (k, l, r) => (k == 'statement') ? R.merge(l, r) : r
 const plugin = (function() {
   return require('./lib/RevealxAPI')
@@ -32,5 +37,7 @@ const plugin = (function() {
       R.mergeWithKey(mergeCompletedStatement, defaults, userconfig),
     )
 })()
+
+window.temp = plugin
 
 module.exports = plugin
