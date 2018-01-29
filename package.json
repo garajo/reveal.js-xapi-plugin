@@ -21,6 +21,7 @@
   "author": "garajo",
   "license": "ISC",
   "devDependencies": {
+    "ava": "^0.25.0",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
@@ -34,5 +35,6 @@
     "webpack": "^2.2.1"
   },
   "dependencies": {
+    "folktale": "^2.0.1"
   }
 }

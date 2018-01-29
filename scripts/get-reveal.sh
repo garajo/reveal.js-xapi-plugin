@@ -7,7 +7,6 @@ curl -s https://api.github.com/repos/hakimel/reveal.js/releases/latest \
 unzip -d temp/ tmp.zip && rm tmp.zip
 mkdir ./revealJS
 cp ./temp/*/index.html ./revealJS/index.html
-# sed -i "s/dependencies\:\ \[/dependencies\:\[\{src:\'plugin\/xapi\/xapi\.js\'\}\,/g" ./revealJS/index.html
 cp -r ./temp/*/js ./revealJS/js
 cp -r ./temp/*/css ./revealJS/css
 cp -r ./temp/*/lib ./revealJS/lib

@@ -27,14 +27,15 @@ const defaults = {
     },
   },
 }
-const mergeCompletedStatement = (k, l, r) => (k == 'statement') ? R.merge(l, r) : r
+
 const plugin = (function() {
   return require('./lib/RevealxAPI')
     .default(
       Reveal,
-      R.mergeWithKey(mergeCompletedStatement, defaults, userconfig),
+      userconfig,
     )
-})()
+  })()
+
 
 window.temp = plugin
 

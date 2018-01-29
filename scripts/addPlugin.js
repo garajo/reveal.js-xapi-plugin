@@ -4,7 +4,32 @@ const add_plugin = {
   src: 'plugin/xapi/xapi.js'
 }
 
-const xapi_config = {
+const xapi_config = `{
+    config: {
+      lrs: {
+        endpoint: "http://localhost",
+      },
+      actor: {
+        mbox: "mailto:garrickaj@gmail.com"
+      }
+    },
+    events: {
+      first: () => {
+        console.log('first slide event')
+        
+      },
+      last: () => {
+        console.log('last slide event')
+        
+      },    
+      endLesson1: () => {
+        console.log('endLesson1 event')
+        
+      }
+    }
+  }`
+
+const xapi_full = {
   xapi: {
     config: {
       lrs: {
@@ -70,9 +95,8 @@ index_html = index_html.replace(insert_plugin, `dependencies: [\n${JSON.stringif
 let matched_deps_str = index_html.match(insert_config)[0]
 matched_deps_str = matched_deps_str.slice(0, -1)
 
-// matched_deps_str = matched_deps_str.trim() + ',\n{ xapi: ' + JSON.stringify(xapi_config.xapi, null, 2) + '}\n]'
 
-matched_deps_str = matched_deps_str.trim() + '\n],\nxapi: ' + JSON.stringify(xapi_config.xapi, null, 2)
+matched_deps_str = matched_deps_str.trim() + '\n],\nxapi: ' + xapi_config
 
 const rewrite = index_html.replace(insert_config, matched_deps_str)
 
