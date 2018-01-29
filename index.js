@@ -9,10 +9,6 @@ const adlVocab = require('./data/adl_vocab.json')
 const TinCan = require('tincanjs')
 const userconfig = Reveal.getConfig().xapi
 
-console.log('Reveal.getConfig()', Reveal.getConfig())
-console.log('userconfig', userconfig)
-
-
 const defaults = {
   lrs: {
     endpoint: "<Endpoint>",

@@ -12,5 +12,6 @@ cp -r ./temp/*/css ./revealJS/css
 cp -r ./temp/*/lib ./revealJS/lib
 cp -r ./temp/*/plugin ./revealJS/plugin
 mkdir ./revealJS/plugin/xapi/
+npm run dist
 rm -rf ./temp
 node ./scripts/addPlugin.js

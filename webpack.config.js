@@ -1,7 +1,7 @@
 const path = require('path')
 
 const config = {
-  entry: './index.js',
+  entry: ['whatwg-fetch', './index.js'],
   output: {
     path: path.resolve(__dirname, 'revealJS/plugin/xapi/'),
     filename: 'xapi.js',

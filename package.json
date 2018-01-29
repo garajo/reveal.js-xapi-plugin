@@ -4,7 +4,7 @@
   "description": "Plugin for xAPI",
   "main": "index.js",
   "scripts": {
-    "dist": "rm ./revealJS/plugin/xapi/xapi.js & webpack --config ./webpack.config.js",
+    "dist": "./node_modules/.bin/rimraf ./revealJS/plugin/xapi/xapi.js & webpack --config ./webpack.config.js",
     "test": "echo 'need test'",
     "preinstall": "bash ./scripts/get-reveal.sh",
     "start": "npm run dev:plugin & npm run dev:reveal:start",
@@ -31,10 +31,14 @@
     "nodemon": "^1.11.0",
     "pug": "^2.0.0-beta11",
     "ramda": "^0.23.0",
+    "rimraf": "^2.6.2",
     "tincanjs": "^0.50.0",
     "webpack": "^2.2.1"
   },
   "dependencies": {
-    "folktale": "^2.0.1"
+    "fetch": "^1.1.0",
+    "folktale": "^2.0.1",
+    "jsonld": "^0.5.18",
+    "whatwg-fetch": "^2.0.3"
   }
 }

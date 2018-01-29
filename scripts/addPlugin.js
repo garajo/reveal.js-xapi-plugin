@@ -1,33 +1,24 @@
 const fs = require('fs')
 
-const add_plugin = {
-  src: 'plugin/xapi/xapi.js'
-}
+const add_plugin = `{ src: 'plugin/xapi/xapi.js'}`
 
-const xapi_config = `{
-    config: {
-      lrs: {
-        endpoint: "http://localhost",
-      },
-      actor: {
-        mbox: "mailto:garrickaj@gmail.com"
-      }
+const xapi_config = `
+{
+  lrs: {
+    endpoint: "http://localhost",
+    actor: {
+      mbox: "mailto:garrickaj@gmail.com"
     },
-    events: {
-      first: () => {
-        console.log('first slide event')
-        
-      },
-      last: () => {
-        console.log('last slide event')
-        
-      },    
-      endLesson1: () => {
-        console.log('endLesson1 event')
-        
-      }
-    }
-  }`
+  },
+  first: () => {
+    console.log('first slide event')
+    
+  },
+  last: () => {
+    console.log('last slide event')
+    
+  },
+}`
 
 const xapi_full = {
   xapi: {
@@ -90,7 +81,7 @@ const insert_plugin = /dependencies: \[/
 const insert_config = /dependencies: \[[\s\S]*?\]/gm
 
 
-index_html = index_html.replace(insert_plugin, `dependencies: [\n${JSON.stringify(add_plugin)},\n`)  
+index_html = index_html.replace(insert_plugin, `dependencies: [\n${add_plugin},`)  
 
 let matched_deps_str = index_html.match(insert_config)[0]
 matched_deps_str = matched_deps_str.slice(0, -1)
