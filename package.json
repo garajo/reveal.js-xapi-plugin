@@ -11,7 +11,7 @@
     "dev": "npm start",
     "dev:docserver": "http-server ./localdev/xapidocs/",
     "dev:plugin": "webpack --config ./webpack.config.js -w",
-    "dev:reveal:start": "./node_modules/.bin/http-server -p 8084 revealJS"
+    "dev:reveal:start": "./node_modules/.bin/reload -p 8084 -d ./revealJS/"
   },
   "keywords": [
     "reveal.js",
@@ -27,18 +27,18 @@
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-node6": "^11.0.0",
+    "http-server": "^0.11.1",
     "local-web-server": "^1.2.7",
     "nodemon": "^1.11.0",
     "pug": "^2.0.0-beta11",
     "ramda": "^0.23.0",
+    "reload": "^2.2.2",
     "rimraf": "^2.6.2",
     "tincanjs": "^0.50.0",
-    "webpack": "^2.2.1"
+    "webpack": "^2.2.1",
+    "whatwg-fetch": "^2.0.3"
   },
   "dependencies": {
-    "fetch": "^1.1.0",
-    "folktale": "^2.0.1",
-    "jsonld": "^0.5.18",
-    "whatwg-fetch": "^2.0.3"
+    "jsonld": "^0.5.18"
   }
 }
