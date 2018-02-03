@@ -2,6 +2,19 @@ const fs = require('fs')
 
 const add_plugin = `{ src: 'plugin/xapi/xapi.js'}`
 
+const html = `<div class="slides">
+  <section data-xapi="started.lesson1">Slide 1</section>
+  <section data-xapi="customStatement">Slide 2</section>
+  <section>
+    <section data-xapi="customStatement">Slide 3</section>
+    <section>
+      <p class="fragment">fragment</p>
+      <p class="fragment">fragment</p>
+      <p class="fragment" data-xapi="completed.lesson1">fragment</p>
+    </section>
+  </section>
+</div>`
+
 const xapi_config = `
 {
   lrs: {
@@ -91,6 +104,7 @@ let index_html = fs.readFileSync('./revealJS/index.html').toString()
 
 const insert_plugin = /dependencies: \[/
 const insert_config = /dependencies: \[[\s\S]*?\]/gm
+const insert_html = /<div class="slides">[\s\S]*?(<\/div>)/gm
 
 
 index_html = index_html.replace(insert_plugin, `dependencies: [\n${add_plugin},`)
@@ -101,6 +115,7 @@ matched_deps_str = matched_deps_str.slice(0, -1)
 
 matched_deps_str = matched_deps_str.trim() + '\n],\nxapi: ' + xapi_config
 
-const rewrite = index_html.replace(insert_config, matched_deps_str)
+index_html = index_html.replace(insert_config, matched_deps_str)
+const rewrite = index_html.replace(insert_html, html)
 
 fs.writeFileSync('./revealJS/index.html', rewrite)
