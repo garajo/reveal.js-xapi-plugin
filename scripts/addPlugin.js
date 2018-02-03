@@ -9,15 +9,27 @@ const xapi_config = `
     actor: {
       mbox: "mailto:garrickaj@gmail.com"
     },
-  },
-  first: () => {
-    console.log('first slide event')
-    
-  },
-  last: () => {
-    console.log('last slide event')
-    
-  },
+	},
+	profile: {
+		name: 'cmi5',
+		url: 'https://raw.githubusercontent.com/adlnet/xapi-authored-profiles/master/cmi5/cmi5.jsonld',
+		// data: ,
+		// name: 'video',
+		// url: 'https://raw.githubusercontent.com/adlnet/xapi-authored-profiles/master/video/video.jsonld',
+	},
+	debug: true,
+	statement_helper: true,
+	statements: {
+		first: () => {
+			console.log('first slide event')
+
+		},
+		last: () => {
+			console.log('last slide event')
+
+		},
+		customStatement: () => 'custom statement >>>>',
+	},
 }`
 
 const xapi_full = {
@@ -81,7 +93,7 @@ const insert_plugin = /dependencies: \[/
 const insert_config = /dependencies: \[[\s\S]*?\]/gm
 
 
-index_html = index_html.replace(insert_plugin, `dependencies: [\n${add_plugin},`)  
+index_html = index_html.replace(insert_plugin, `dependencies: [\n${add_plugin},`)
 
 let matched_deps_str = index_html.match(insert_config)[0]
 matched_deps_str = matched_deps_str.slice(0, -1)
