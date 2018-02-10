@@ -23,13 +23,22 @@ const xapi_config = `
       mbox: "mailto:garrickaj@gmail.com"
     },
 	},
-	profile: {
-		name: 'cmi5',
-		url: 'https://raw.githubusercontent.com/adlnet/xapi-authored-profiles/master/cmi5/cmi5.jsonld',
-		// data: ,
-		// name: 'video',
-		// url: 'https://raw.githubusercontent.com/adlnet/xapi-authored-profiles/master/video/video.jsonld',
-	},
+  /*
+		possible formats:
+		// selects from list of provided with Plugin
+			- ['cmi5']
+		// user provided key-val list of profiles and urls
+			- [{
+					'cmi5': 'https://raw.githubusercontent.com/adlnet/xapi-authored-profiles/master/cmi5/cmi5.jsonld',
+				}]
+
+	*/
+	profiles: ['cmi5', 'acrossx'],
+	/*
+		profiles: {
+			'cmi5': 'https://raw.githubusercontent.com/adlnet/xapi-authored-profiles/master/cmi5/cmi5.jsonld',
+		},
+	*/
 	debug: true,
 	statement_helper: true,
 	statements: {
