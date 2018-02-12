@@ -6,29 +6,34 @@
 //
 const R = require('ramda')
 const adlVocab = require('./data/adl_vocab.json')
-const TinCan = require('tincanjs')
 const userconfig = Reveal.getConfig().xapi
 
 const defaults = {
   lrs: {
-    endpoint: "<Endpoint>",
-    username: "<User>",
-    password: "<Password>",
-    allowFail: false,
-  },
-  statement: {
-    actor: {
-      mbox: "mailto:anonymous@example.com",
-      name: "anonymous",
+    endpoint: "https://cloud.scorm.com/tc/public/",
+    actor: { "mbox":"mailto:love2learn@example.com", "name":"I.D. Learning" },
+    activity: {
+      definition: '',
+      id: '',
+      objectType: '',
+
     },
-  },
+    authUser: "<User>",
+    authPassword: "<Password>",
+    allowFail: false,
+  }
 }
+
+console.log('defaults', defaults)
+console.log('userconfig', userconfig)
+
+console.log('-------------------')
 
 const plugin = (function() {
   return require('./lib/RevealxAPI')
     .default(
       Reveal,
-      userconfig,
+      Object.assign(defaults, userconfig, { lrs: {...defaults.lrs, ...userconfig.lrs}}),
     )
   })()
 
