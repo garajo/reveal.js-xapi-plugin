@@ -21,11 +21,6 @@ const defaults = {
   }
 }
 
-console.log('defaults', defaults)
-console.log('userconfig', userconfig)
-
-console.log('-------------------')
-
 const plugin = (function() {
   return require('./lib/RevealxAPI')
     .default(
