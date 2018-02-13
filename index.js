@@ -4,7 +4,6 @@
 // - defined actor or anonymous sent back to Reveal and presentation
 // - records statements automatically through navigation
 //
-const R = require('ramda')
 const adlVocab = require('./data/adl_vocab.json')
 const userconfig = Reveal.getConfig().xapi
 
@@ -18,7 +17,8 @@ const defaults = {
     authUser: "<User>",
     authPassword: "<Password>",
     allowFail: false,
-  }
+  },
+  langISO: 'en',
 }
 
 const plugin = (function() {
