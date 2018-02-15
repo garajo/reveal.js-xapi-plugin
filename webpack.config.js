@@ -21,6 +21,10 @@ const config = {
 						['transform-react-jsx', { pragma: 'h' }]
 					]
 				}
+      },
+      {
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
       }
     ],
   },
