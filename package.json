@@ -4,14 +4,16 @@
   "description": "Plugin for xAPI",
   "main": "index.js",
   "scripts": {
-    "dist": "./node_modules/.bin/rimraf ./revealJS/plugin/xapi/xapi.js & webpack --config ./webpack.config.js",
-    "test": "echo 'need test'",
-    "preinstall": "bash ./scripts/get-reveal.sh",
-    "start": "npm run dev:plugin & npm run dev:reveal:start",
-    "dev": "npm start",
     "dev:docserver": "http-server ./localdev/xapidocs/",
     "dev:plugin": "webpack --config ./webpack.config.js -w",
-    "dev:reveal:start": "./node_modules/.bin/reload -p 8084 -d ./revealJS/"
+    "dev:reveal:start": "./node_modules/.bin/reload -p 8084 -d ./revealJS/",
+    "dev": "npm start",
+    "dist": "./node_modules/.bin/rimraf ./revealJS/plugin/xapi/xapi.js & webpack --config ./webpack.config.js",
+    "preinstall": "bash ./scripts/get-reveal.sh",
+    "start": "npm run dev:plugin & npm run dev:reveal:start",
+    "test": "ava",
+    "test:ones": "ava",
+    "test:watch": "ava ./test/**/*.js -- --watch"
   },
   "keywords": [
     "reveal.js",
@@ -28,6 +30,7 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-node6": "^11.0.0",
+    "babel-register": "^6.26.0",
     "css-loader": "^0.28.9",
     "http-server": "^0.11.1",
     "local-web-server": "^1.2.7",
@@ -44,5 +47,11 @@
   },
   "dependencies": {
     "jsonld": "^0.5.18"
+  },
+  "ava": {
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
   }
 }
