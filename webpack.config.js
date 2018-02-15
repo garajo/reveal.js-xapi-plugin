@@ -12,10 +12,19 @@ const config = {
     rules: [
       {
         test: /\.js$/,
-        use: 'babel-loader',
+        loader: 'babel-loader',
+        options: {
+					presets: [
+						'es2017'
+					],
+					plugins: [
+						['transform-react-jsx', { pragma: 'h' }]
+					]
+				}
       }
     ],
-  }
+  },
+  devtool: 'source-map'
 }
 
 module.exports = config
