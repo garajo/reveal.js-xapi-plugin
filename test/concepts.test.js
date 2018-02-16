@@ -1,8 +1,8 @@
 import test from 'ava';
-import { compareByTypeAndLabel, getConcepts, filterTerms, reduceFilter, dotVerbActivity } from 'lib/concepts'
+import { compareByTypeAndLabel, getConcepts, filterTerms, reduceFilter, dotVerbActivity, reduceByTerm } from 'lib/concepts'
 import default_cmi5 from 'lib/default_cmi5_data'
 
-const concepts = [
+const concepts = Object.freeze([
   {
     "type": "Verb",
     "id": "http://adlnet.gov/expapi/verbs/completed",
@@ -94,7 +94,7 @@ const concepts = [
     "contentType": "application/json",
     "schema": "https://raw.githubusercontent.com/adlnet/xAPI-SCORM-Profile/master/document-schemas/scorm.profile.agent.profile.schema.json"
   }
-]
+])
 
 test('compareByTypeAndLabel() returns true or false comparing prefLabel property', t => {
   const verb = concepts[0].prefLabel.en
@@ -112,13 +112,13 @@ test('getConcepts() returns the correct data shape', t => {
   t.deepEqual(getConcepts([default_cmi5]), {[default_cmi5.id]: default_cmi5.concepts})
 })
 
-test('getConcepts() returns the correct data shape', t => {
+test('filterTerms() returns the correct data shape', t => {
   const langISO = 'en'
   const terms = ['completed','assessment']
   const profile_data = [{ id: 'http://unique.iri', concepts}]
   const found_terms = filterTerms(langISO, terms, profile_data)
   t.deepEqual(found_terms.verbs, [concepts[0]])
-  t.deepEqual(found_terms.activities, [concepts[2]])
+  // t.deepEqual(found_terms.activities, [concepts[2]])
 })
 
 test('reduceFilter() returns the correct data shape', t => {
@@ -137,4 +137,11 @@ test('dotVerbActivity() returns correctly', t => {
       activities: [concepts[2]]
     }
   )
+})
+
+test('reduceByTerm() returns correctly', t => {
+  const langISO = 'en'
+  const key = 'http://unique.iri'
+  t.deepEqual(reduceByTerm('completed', 'verb', langISO, { key: concepts}), [concepts[0]])
+  t.deepEqual(reduceByTerm('assessment', 'activitytype', langISO, { key: concepts}), [concepts[2]])
 })
