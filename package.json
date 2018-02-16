@@ -32,8 +32,10 @@
     "babel-preset-node6": "^11.0.0",
     "babel-register": "^6.26.0",
     "css-loader": "^0.28.9",
+    "fetch-ponyfill": "^5.0.0",
     "http-server": "^0.11.1",
     "local-web-server": "^1.2.7",
+    "nock": "^9.1.6",
     "nodemon": "^1.11.0",
     "preact": "^8.2.7",
     "pug": "^2.0.0-beta11",
@@ -42,8 +44,7 @@
     "rimraf": "^2.6.2",
     "style-loader": "^0.20.1",
     "tincanjs": "^0.50.0",
-    "webpack": "^2.2.1",
-    "whatwg-fetch": "^2.0.3"
+    "webpack": "^2.2.1"
   },
   "dependencies": {
     "jsonld": "^0.5.18"
