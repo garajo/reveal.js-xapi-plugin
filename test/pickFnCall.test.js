@@ -1,6 +1,6 @@
 import test from 'ava';
-import pickFnCall from '../lib/pickFnCall'
-import {trace} from '../lib/Debugger'
+import pickFnCall from 'lib/pickFnCall'
+import {trace} from 'lib/Debugger'
 
 test('functions are being identified and called', t => {
   const fn_list = {

@@ -1,5 +1,5 @@
 import test from 'ava'
-import Statement from '../lib/Statement'
+import Statement from 'lib/Statement'
 
 test('converts from verb and activity profile to statement', t => {
   const verb_profile = {
