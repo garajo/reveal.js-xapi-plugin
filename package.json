@@ -13,7 +13,7 @@
     "start": "npm run dev:plugin & npm run dev:reveal:start",
     "test": "ava",
     "test:ones": "ava",
-    "test:watch": "ava ./test/**/*.js -- --watch"
+    "test:watch": "ava --watch"
   },
   "keywords": [
     "reveal.js",

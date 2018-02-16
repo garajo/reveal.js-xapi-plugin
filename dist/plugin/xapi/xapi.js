@@ -6506,7 +6506,7 @@ var TinCan;
         },
 
         /**
-        Creates a statement used for voiding the passed statement/statement ID and calls
+        Creates a statement used for voiding the passed statement/Statement ID and calls
         send statement with the voiding statement.
 
         @method voidStatement
@@ -8847,7 +8847,7 @@ TinCan client library
             // Respect a more URL that is relative to either the server root
             // or endpoint (though only the former is allowed in the spec)
             serverRoot = TinCan.Utils.getServerRoot(this.endpoint);
-            if (parsedURL.path.indexOf("/statements") === 0){
+            if (parsedURL.path.indexOf("/Statements") === 0){
                 parsedURL.path = this.endpoint.replace(serverRoot, "") + parsedURL.path;
                 this.log("converting non-standard more URL to " + parsedURL.path);
             }
