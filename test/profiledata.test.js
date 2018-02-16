@@ -1,5 +1,4 @@
 import test from 'ava';
-import fs from 'fs'
 import profiledata, {profilesOrDefault, getProfileKeyVals, xapi_profiles, retrieveAllProfiles, retrieveProfileData} from 'lib/profiledata'
 import nock from 'nock';
 import default_cmi5 from 'lib/default_cmi5_data'
