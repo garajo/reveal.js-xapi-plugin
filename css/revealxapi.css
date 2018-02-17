@@ -1,9 +1,29 @@
-.statement_helper .app{
-  color: red;
+.statement_component{
   position: absolute;
   zIndex: 1;
   top: auto;
   bottom: 12px;
   left: 12px;
   font-size: 1rem !important;
+}
+.highlight-blue {
+   color: #00F;
+}
+.statement_list {
+  background-color: #FFF;
+  color: #000;
+  width: 100%;
+}
+ul, li {
+  padding: 0;
+  margin: 0 !important;
+}
+li {
+  list-style-type: none;
+}
+li.statement-item {
+  margin-bottom: .3rem !important;
+}
+.type_notation {
+  color: #999;
 }

@@ -6,7 +6,7 @@ const config = {
     path: path.resolve(__dirname, 'revealJS/plugin/xapi/'),
     filename: 'xapi.js',
     library: 'RevealXAPI',
-    libraryTarget: 'var',
+    libraryTarget: 'var'
   },
   module: {
     rules: [
@@ -14,21 +14,27 @@ const config = {
         test: /\.js$/,
         loader: 'babel-loader',
         options: {
-					presets: [
-						'es2017'
-					],
-					plugins: [
-						['transform-react-jsx', { pragma: 'h' }]
-					]
-				}
-      },
-      {
+          presets: ['es2017'],
+          plugins: [
+            [
+              'transform-react-jsx', {
+                pragma: 'h'
+              }
+            ]
+          ]
+        }
+      }, {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        use: ['style-loader', 'css-loader']
       }
-    ],
+    ]
   },
-  devtool: 'source-map'
+  devtool: 'source-map',
+  resolve: {
+    modules: [
+      path.resolve('./'), path.resolve('./node_modules')
+    ],
+  }
 }
 
 module.exports = config
