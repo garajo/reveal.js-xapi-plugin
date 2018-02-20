@@ -1,3 +1,4 @@
+import helper from './helper/hooks.js'
 import test from 'ava';
 import pickFnCall from 'lib/pickFnCall'
 import {trace} from 'lib/UIConsole'

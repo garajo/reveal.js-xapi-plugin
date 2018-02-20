@@ -1,11 +1,7 @@
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
-const { window } = new JSDOM()
+import helper from './helper/hooks.js'
 import test from 'ava'
 import statementHelper from 'lib/statementHelper'
 
-const { document } = window;
-global.document = document;
 
 test('converts from verb and activity profile to statement', t => {
   const node = document.createElement('div')
