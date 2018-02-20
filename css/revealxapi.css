@@ -5,6 +5,17 @@
   bottom: 12px;
   left: 12px;
   font-size: 1rem !important;
+  max-width: 330px;
+}
+.console_component {
+  position: absolute;
+  zIndex: 1;
+  top: auto;
+  bottom: 12px;
+  right: 5rem;
+  border: 1px solid red !important;
+  font-size: .75rem !important;
+  width: 220px;
 }
 .highlight-blue {
    color: #00F;
