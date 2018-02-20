@@ -15,13 +15,6 @@ const config = {
         loader: 'babel-loader',
         options: {
           presets: ['es2017'],
-          plugins: [
-            [
-              'transform-react-jsx', {
-                pragma: 'h'
-              }
-            ]
-          ]
         }
       }, {
         test: /\.css$/,
