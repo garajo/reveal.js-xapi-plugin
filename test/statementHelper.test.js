@@ -66,9 +66,6 @@ test('converts from verb and activity profile to statement', t => {
   const search_input = node.querySelector('input[type="text"]')
   t.deepEqual(search_input.getAttribute('placeholder'), 'search for a term')
 
-  // search_input.setAttribute('value', 'c')
-  // search_input.dispatchEvent(new window.Event("input"))
-  // var beautify_html = require('js-beautify').html;
-  // const listnodes2 = node.querySelector('ul').childNodes
+  // https://github.com/developit/preact/issues/658
 
 })
