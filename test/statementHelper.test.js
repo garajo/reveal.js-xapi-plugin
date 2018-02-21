@@ -59,10 +59,10 @@ test('converts from verb and activity profile to statement', t => {
   const component = statementHelper(node, data, 'en')
   const listnodes = node.querySelector('ul').childNodes
   t.deepEqual(listnodes.length, 2)
-  t.regex(listnodes[0].textContent, new RegExp(data[0].concepts[0].prefLabel.en))
-  t.regex(listnodes[0].textContent, new RegExp(data[0].concepts[0].type))
-  t.regex(listnodes[1].textContent, new RegExp(data[0].concepts[1].prefLabel.en))
-  t.regex(listnodes[1].textContent, new RegExp(data[0].concepts[1].type))
+  t.true(listnodes[0].textContent.includes(data[0].concepts[0].prefLabel.en))
+  t.true(listnodes[0].textContent.includes(data[0].concepts[0].type))
+  t.true(listnodes[1].textContent.includes(data[0].concepts[1].prefLabel.en))
+  t.true(listnodes[1].textContent.includes(data[0].concepts[1].prefLabel.en))
   const search_input = node.querySelector('input[type="text"]')
   t.deepEqual(search_input.getAttribute('placeholder'), 'search for a term')
 

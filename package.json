@@ -13,7 +13,7 @@
     "start": "NODE_PATH=./ npm run dev:plugin & npm run dev:reveal:start",
     "test": "NODE_PATH=./ ava",
     "test:tap": "npm test -- --tap",
-    "test:ones": "npm test",
+    "test:ones": "npm test -- --watch",
     "test:watch": "npm run test -- --watch"
   },
   "keywords": [
