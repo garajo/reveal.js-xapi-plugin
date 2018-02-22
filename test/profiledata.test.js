@@ -1,22 +1,22 @@
-import test from 'ava';
+import test from 'ava'
 import profiledata, {profilesOrDefault, getProfileKeyVals, xapi_profiles, retrieveAllProfiles, retrieveProfileData} from 'lib/profiledata'
-import nock from 'nock';
+import nock from 'nock'
 import default_cmi5 from 'lib/default_cmi5_data'
 
 const good = {
   hello: 'world'
-};
-const bad = 'X';
+}
+const bad = 'X'
 
 test.beforeEach(function() {
-  nock('http://example.com').get('/').reply(200, good);
+  nock('http://example.com').get('/').reply(200, good)
 
-  nock('http://example.com').get('/fail').reply(404, bad);
-});
+  nock('http://example.com').get('/fail').reply(404, bad)
+})
 
 test.afterEach(function() {
-  nock.cleanAll();
-});
+  nock.cleanAll()
+})
 
 test('profilesOrDefault() returns given profile or a default value', t => {
   const config_profiles = ["scorm", "adl", "tincan"]
@@ -60,6 +60,6 @@ https://github.com/avajs/ava/issues/1371
 
 test('throws', async t => {
   const url = "http://example.com/fail"
-	await t.throws(async () => await retrieveProfileData(url), {instanceOf: SyntaxError, message: 'Unexpected token X in JSON at position 0'});
+	await t.throws(async () => await retrieveProfileData(url), {instanceOf: SyntaxError, message: 'Unexpected token X in JSON at position 0'})
 })
 */

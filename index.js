@@ -11,9 +11,6 @@ const defaults = {
   lrs: {
     endpoint: "https://cloud.scorm.com/tc/public/",
     actor: { "mbox":"mailto:love2learn@example.com", "name":"I.D. Learning" },
-    activity: {
-      id: "http://id.tincanapi.com/activitytype/slide",
-    },
     authUser: "<User>",
     authPassword: "<Password>",
     allowFail: false,

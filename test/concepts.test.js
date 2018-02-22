@@ -1,4 +1,4 @@
-import test from 'ava';
+import test from 'ava'
 import { compareByTypeAndLabel, getConcepts, filterTerms, reduceFilter, dotVerbActivity, reduceByTerm } from 'lib/concepts'
 import default_cmi5 from 'lib/default_cmi5_data'
 

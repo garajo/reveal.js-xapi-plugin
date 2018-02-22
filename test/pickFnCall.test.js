@@ -1,5 +1,5 @@
 import helper from './helper/hooks.js'
-import test from 'ava';
+import test from 'ava'
 import pickFnCall from 'lib/pickFnCall'
 import {trace} from 'lib/UIConsole'
 
@@ -19,4 +19,4 @@ test('functions are being identified and called', t => {
     a: 'string'
   }, 'a'), trace(`Could not find reference: a`))
 
-});
+})
