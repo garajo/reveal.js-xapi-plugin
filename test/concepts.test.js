@@ -131,7 +131,7 @@ test('reduceFilter() returns the correct data shape', t => {
 test('dotVerbActivity() returns correctly', t => {
   const langISO = 'en'
   const profile_data = [{ id: 'http://unique.iri', concepts}]
-  t.deepEqual(dotVerbActivity('completed.assessment', langISO, profile_data),
+  t.deepEqual(dotVerbActivity(['completed','assessment'], langISO, profile_data),
     {
       verbs: [concepts[0]],
       activities: [concepts[2]]
