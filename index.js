@@ -15,7 +15,7 @@ const defaults = {
     authPassword: "<Password>",
     allowFail: false,
   },
-  langISO: 'en',
+  lang_ISO: 'en',
 }
 
 const plugin = (function() {

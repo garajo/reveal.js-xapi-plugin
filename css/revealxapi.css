@@ -4,18 +4,20 @@
   top: auto;
   bottom: 12px;
   left: 12px;
-  font-size: 1rem !important;
   max-width: 330px;
+  font-size: 1rem !important;
 }
 .console_component {
   position: absolute;
   zIndex: 1;
   top: auto;
   bottom: 12px;
-  right: 5rem;
-  border: 1px solid red !important;
-  font-size: .75rem !important;
+  right: 7rem;
   width: 220px;
+  color: #000;
+  background-color: #FFF;
+  font-size: .6rem !important;
+  padding: 2px !important;
 }
 .highlight-blue {
    color: #00F;
