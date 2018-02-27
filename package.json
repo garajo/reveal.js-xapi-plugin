@@ -8,7 +8,7 @@
     "dev:plugin": "webpack --config ./webpack.config.js -w",
     "dev:reveal:start": "./node_modules/.bin/reload -p 8084 -d ./revealJS/",
     "dev": "npm start",
-    "dist": "./node_modules/.bin/rimraf ./revealJS/plugin/xapi/xapi.js & webpack --config ./webpack.config.js",
+    "dist": "rm -f ./revealJS/plugin/xapi/xapi.js & webpack --config ./webpack.config.js",
     "preinstall": "bash ./scripts/get-reveal.sh",
     "start": "NODE_PATH=./ npm run dev:plugin & npm run dev:reveal:start",
     "test": "NODE_PATH=./ ava",
