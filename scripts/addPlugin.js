@@ -95,4 +95,4 @@ matched_deps_str = matched_deps_str.trim() + '\n],\nxapi: ' + xapi_config
 index_html = index_html.replace(insert_config, matched_deps_str)
 index_html = index_html.replace(insert_html, html)
 
-fs.writeFileSync('./revealJS/index.html', rewrite)
+fs.writeFileSync('./revealJS/index.html', index_html)
