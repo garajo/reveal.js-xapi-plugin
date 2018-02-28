@@ -4,7 +4,6 @@
 // - defined actor or anonymous sent back to Reveal and presentation
 // - records statements automatically through navigation
 //
-const adlVocab = require('./data/adl_vocab.json')
 const userconfig = Reveal.getConfig().xapi
 
 const defaults = {
