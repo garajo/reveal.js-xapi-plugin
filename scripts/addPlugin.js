@@ -26,13 +26,14 @@ const xapi_config = `
 {
   lrs: {
     // endpoint: "https://cloud.scorm.com/tc/public/",
-    endpoint: "https://cloud.scorm.com/tc/1EZABCMVG6/",
+    // endpoint: "https://cloud.scorm.com/tc/1EZABCMVG6/",
+    endpoint: "https://lrs.adlnet.gov/xapi/",
     actor: {
       "mbox": "mailto:love2learn@example.com",
       "name": "anonymous learner"
     },
-    authUser: "HpUb-rmEJvF5uUZu8us",
-    authPassword: "v0yiqfVh2gCuAfCROFY",
+    authUser: "xapi-tools",
+    authPassword: "xapi-tools",
   },
   lang_ISO: 'en',
   /*
@@ -45,11 +46,11 @@ const xapi_config = `
         }]
 
   */
-  profiles: ['scorm', 'adl', 'tincan', 'activity-streams', 'acrossx'],
+    profiles: ['scorm', 'adl', 'tincan', 'activity-streams', 'acrossx'],
   /*
-    profiles: {
-      'cmi5': 'https://raw.githubusercontent.com/adlnet/xapi-authored-profiles/master/cmi5/cmi5.jsonld'
-    },
+    profiles: [{
+        'cmi5': 'https://raw.githubusercontent.com/adlnet/xapi-authored-profiles/master/cmi5/cmi5.jsonld',
+      }],
   */
   /**
    * Controls
