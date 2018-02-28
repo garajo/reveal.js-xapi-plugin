@@ -1,4 +1,4 @@
-.statement_component{
+.bottom_left{
   position: absolute;
   zIndex: 1;
   top: auto;
@@ -7,7 +7,7 @@
   max-width: 330px;
   font-size: 1rem !important;
 }
-.console_component {
+.bottom_right {
   position: absolute;
   zIndex: 1;
   top: auto;

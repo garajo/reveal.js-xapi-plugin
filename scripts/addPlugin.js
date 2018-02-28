@@ -60,6 +60,7 @@ const xapi_config = `
    * @type {Boolean}
    */
   dev_mode: true,
+  getActorOnInit: true,
   statements: {
     staticFn: () => {
       console.log('staticFn')
