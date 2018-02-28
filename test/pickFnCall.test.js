@@ -11,12 +11,15 @@ test('functions are being identified and called', t => {
   }
 
   t.deepEqual(pickFnCall(fn_list, 'a'), fn_list['a']())
-  t.deepEqual(pickFnCall(fn_list, 'notthere'), trace(`Could not find reference: notthere`))
+
+  const msg = 'Could not find function reference:'
+
+  t.deepEqual(pickFnCall(fn_list, 'notthere'), trace(`${msg} notthere`))
   t.deepEqual(pickFnCall({
     a: {}
-  }, 'a'), trace(`Could not find reference: a`))
+  }, 'a'), trace(`${msg} a`))
   t.deepEqual(pickFnCall({
     a: 'string'
-  }, 'a'), trace(`Could not find reference: a`))
+  }, 'a'), trace(`${msg} a`))
 
 })

@@ -1,5 +1,5 @@
 import test from 'ava'
-import { compareByTypeAndLabel, getConcepts, filterTerms, reduceFilter, dotVerbActivity, reduceByTerm } from 'lib/concepts'
+import { compareByTypeAndLabel, getConcepts, reduceFilter, dotVerbActivity, reduceByTerm } from 'lib/concepts'
 import default_cmi5 from 'lib/default_cmi5_data'
 
 const concepts = Object.freeze([
@@ -112,15 +112,6 @@ test('getConcepts() returns the correct data shape', t => {
   t.deepEqual(getConcepts([default_cmi5]), {[default_cmi5.id]: default_cmi5.concepts})
 })
 
-test('filterTerms() returns the correct data shape', t => {
-  const langISO = 'en'
-  const terms = ['completed','assessment']
-  const profile_data = [{ id: 'http://unique.iri', concepts}]
-  const found_terms = filterTerms(langISO, terms, profile_data)
-  t.deepEqual(found_terms.verbs, [concepts[0]])
-  // t.deepEqual(found_terms.activities, [concepts[2]])
-})
-
 test('reduceFilter() returns the correct data shape', t => {
   const compare = (ea) => ea.type === 'Verb'
   t.deepEqual(reduceFilter(compare, { 'an_id': concepts}), concepts.filter(ea => ea.type === 'Verb'))
@@ -131,12 +122,18 @@ test('reduceFilter() returns the correct data shape', t => {
 test('dotVerbActivity() returns correctly', t => {
   const langISO = 'en'
   const profile_data = [{ id: 'http://unique.iri', concepts}]
+  const verb = concepts[0].prefLabel[langISO]
+  const activity = concepts[2].prefLabel[langISO]
+
+  const concept_deconstr = {'uniqueIRI': concepts}
+
   t.deepEqual(dotVerbActivity(['completed','assessment'], langISO, profile_data),
-    {
-      verbs: [concepts[0]],
-      activities: [concepts[2]]
-    }
+    [
+      {[verb]: reduceByTerm(verb, 'verb', langISO, concept_deconstr)},
+      {[activity]: reduceByTerm(activity, 'activitytype', langISO, concept_deconstr)},
+    ]
   )
+
 })
 
 test('reduceByTerm() returns correctly', t => {
