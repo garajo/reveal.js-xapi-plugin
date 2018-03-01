@@ -9,7 +9,7 @@ const userconfig = Reveal.getConfig().xapi
 const defaults = {
   lrs: {
     endpoint: "https://cloud.scorm.com/tc/public/",
-    actor: { "mbox":"mailto:love2learn@example.com", "name":"I.D. Learning" },
+    actor: { "mbox":"mailto:love2learn@example.com", "name":"OS 4 Learning" },
     authUser: "<User>",
     authPassword: "<Password>",
     allowFail: false,
