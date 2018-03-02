@@ -1,6 +1,6 @@
 import test from 'ava'
 import { compareByTypeAndLabel, getConcepts, reduceFilter, dotVerbActivity, reduceByTerm } from 'lib/concepts'
-import default_cmi5 from 'lib/default_cmi5_data'
+import default_cmi5 from 'data/default_cmi5_data'
 
 const concepts = Object.freeze([
   {

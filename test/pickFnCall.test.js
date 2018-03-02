@@ -1,7 +1,7 @@
 import helper from './helper/hooks.js'
 import test from 'ava'
 import pickFnCall from 'lib/pickFnCall'
-import {trace} from 'lib/UIConsole'
+import {trace} from 'lib/uiConsole'
 
 test('functions are being identified and called', t => {
   const fn_list = {
