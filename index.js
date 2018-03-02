@@ -15,6 +15,7 @@ const defaults = {
     allowFail: false,
   },
   lang_ISO: 'en',
+  local_ISO: 'US',
 }
 
 const plugin = (function() {
