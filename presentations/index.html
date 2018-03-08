@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>reveal.js</title>
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/black.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<section data-xapi="started.slide deck" data-name="first slide">subsection</section>
+				<section data-xapi="attended.lesson" >subsection</section>
+			</section>
+			<section>
+				<p class="fragment">fragment</p>
+				<p class="fragment" data-xapi="completed.application">fragment</p>
+			</section>
+			<section data-xapi="watched.lesson">Slide </section>
+			<section data-xapi="multipleStatement">Slide </section>
+			<section data-xapi="watched.lesson">Slide </section>
+			<section data-xapi="staticFn">Slide </section>
+			<section>Slide<button onclick="return xapi.checkQuiz(event, 'once')">click me</button></section>
+			<section>
+				<section>Other stuff</section>
+				<section data-xapi="nonExistentFn">Slide </section>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+
+	<script>
+		// More info about config & dependencies:
+		// - https://github.com/hakimel/reveal.js#configuration
+		// - https://github.com/hakimel/reveal.js#dependencies
+		Reveal.initialize({
+			dependencies: [{
+					src: 'plugin/xapi/xapi.js'
+				},
+				{
+					src: 'plugin/markdown/marked.js'
+				},
+				{
+					src: 'plugin/markdown/markdown.js'
+				},
+				{
+					src: 'plugin/notes/notes.js',
+					async: true
+				},
+				{
+					src: 'plugin/highlight/highlight.js',
+					async: true,
+					callback: function() {
+						hljs.initHighlightingOnLoad();
+					}
+				}
+			],
+			xapi: {
+				lrs: {
+					// endpoint: "https://cloud.scorm.com/tc/public/",
+					// endpoint: "https://lrs.adlnet.gov/xapi/",
+					// authUser: "xapi-tools",
+					// authPassword: "xapi-tools",
+
+					// endpoint: "https://cloud.scorm.com/tc/1EZABCMVG6/sandbox",
+					endpoint: "https://cloud.scorm.com/tc/75GX2IO6XT/sandbox", // testing endpoint
+					authUser: "HpUb-rmEJvF5uUZu8us",
+					authPassword: "v0yiqfVh2gCuAfCROFY",
+
+					actor: {
+						"mbox": "mailto:love2learn@example.com",
+						"name": "anonymous learner"
+					},
+				},
+				lang_ISO: 'en',
+				local_ISO: 'US',
+				/*
+					possible formats:
+					// selects from list of provided with Plugin
+						- ['cmi5']
+					// user provided key-val list of profiles and urls
+						- [{
+								'cmi5': 'https://raw.githubusercontent.com/adlnet/xapi-authored-profiles/master/cmi5/cmi5.jsonld',
+							}]
+
+				*/
+					profiles: ['scorm', 'adl', 'tincan', 'activity-streams', 'acrossx', 'dod-isd', 'video'],
+				/*
+					profiles: [{
+							'cmi5': 'https://raw.githubusercontent.com/adlnet/xapi-authored-profiles/master/cmi5/cmi5.jsonld',
+						}],
+				*/
+				authority: {
+					name: "Instructional Designer",
+					mbox: "mailto:hello@example.com"
+				},
+				/**
+				 * Controls
+				 *  - statement helper
+				 *  - sending statements over xhr
+				 *  - debug feedback
+				 * @type {Boolean}
+				 */
+				dev_mode: true,
+				send_enabled: true,
+				// getActorOnInit: true,
+				statements: {
+					staticFn: () => {
+						console.log('staticFn')
+						return true ? 'attempted.attempt' : ''
+					},
+					multipleStatement: () => {
+						console.log('multipleStatement')
+						return ['answered.question', 'attended.lesson']
+					},
+					checkQuiz: () => {
+						console.log('checkQuiz')
+						const passed = true || false
+						return passed ? 'watched.lesson' : null
+					},
+				},
+			}
+		});
+	</script>
+</body>
+
+</html>

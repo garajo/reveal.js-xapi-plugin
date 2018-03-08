@@ -14,4 +14,4 @@ cp -r ./temp/*/lib ./revealJS/lib
 cp -r ./temp/*/plugin ./revealJS/plugin
 mkdir ./revealJS/plugin/xapi/
 rm -rf ./temp
-node ./scripts/addPlugin.js
+cp -r ./presentations ./revealJS
