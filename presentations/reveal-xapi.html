@@ -30,6 +30,10 @@
     li.text-center {
       text-align: center;
     }
+    ul {
+      display: block !important;
+      margin-left: 1rem !important;
+    }
   </style>
 
 
@@ -79,7 +83,7 @@
       <section>
         <section>
           <ul class="listparent">
-            <li>Reveal is able to communicate with an xAPI endpoint because of a <a href="https://github.com/garajo/reveal.js-xapi-plugin">plugin</a></li>
+            <li>Reveal is able to communicate with an xAPI endpoint because of a plugin, <a href="https://github.com/garajo/reveal.js-xapi-plugin">reveal.js-xapi-plugin</a></li>
             <li class="fragment">Reveal plugins augment capabilities, such as sending xAPI statements to an LRS endpoint</li>
             <li class="fragment">More plugins can be added or developed to augment capabilities, which modularly defines your content capabilities</li>
           </ul>
@@ -89,7 +93,7 @@
         <p>Motivation for the plugin</p>
         <ul class="listparent">
           <li class="fragment">Succint mechanism to send xAPI statements as a plugin</li>
-          <li class="fragment">Demonstrate OS resources that can be easily 'patched' together</li>
+          <li class="fragment">Demonstrate Open Sourc resources that can be easily 'patched' together</li>
           <li class="fragment">Advocation of using Open Source technologies for eLearning and Instructional Design</li>
           <li class="fragment">Experimentation</li>
         </ul>
@@ -100,7 +104,7 @@
             <li>However, this format is not for every scenario</li>
             <li class="fragment">But it could be a fitting solution for the following learning scenarios</li>
             <li>
-              <ul>
+              <ul style="margin-left: 1rem !important;">
                 <li class="fragment">self-paced</li>
                 <li class="fragment">MOOC</li>
                 <li class="fragment">blended</li>
@@ -111,10 +115,10 @@
         </section>
         <section>
           <p>As a mechanism for collecting and reporting data,
-            <ul class="listparent">
-              <li class="fragment">Granular experience/statement reporting</li>
-              <li class="fragment">Basis for Learning Analytics</li>
-            </ul>
+          <ul class="listparent">
+            <li class="fragment">Granular experience/statement reporting</li>
+            <li class="fragment">Basis for Learning Analytics</li>
+          </ul>
         </section>
       </section>
 
@@ -214,10 +218,10 @@
       ],
       xapi: {
         lrs: {
-          // endpoint: "https://cloud.scorm.com/tc/public/",
-          endpoint: "https://cloud.scorm.com/tc/75GX2IO6XT/sandbox", // testing endpoint
-          authUser: "HpUb-rmEJvF5uUZu8us",
-          authPassword: "v0yiqfVh2gCuAfCROFY",
+          endpoint: "https://cloud.scorm.com/tc/public/", //https://xapi.com/wp-content/assets/ClientPrototypes/StatementViewer/index.html
+          // endpoint: "https://lrs.adlnet.gov/xapi/", // http://adlnet.github.io/xapi-statement-viewer/
+					// authUser: "xapi-tools",
+					// authPassword: "xapi-tools",
           actor: {
             "mbox": "mailto:love2learn@example.com",
             "name": "anonymous learner"
