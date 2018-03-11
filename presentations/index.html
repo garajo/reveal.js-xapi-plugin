@@ -21,28 +21,78 @@
 		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
 		document.getElementsByTagName('head')[0].appendChild(link);
 	</script>
+	<style>
+		p {
+			font-size: 1.5rem !important;
+		}
+	</style>
 </head>
 
 <body>
 	<div class="reveal">
 		<div class="slides">
 			<section>
-				<section data-xapi="started.slide deck" data-name="first slide">subsection</section>
-				<section data-xapi="attended.lesson" >subsection</section>
+				<section
+					data-xapi="started.slide deck"
+				>
+					<h3>Basic</h3>
+					<pre><xmp><section data-xapi="started.slide deck" /></xmp></pre>
+					<p><a target="_blank" href="https://xapi.com/wp-content/assets/ClientPrototypes/StatementViewer/index.html">See your statement</a></p>
+				</section>
+				<section
+					data-xapi="advanced.slide"
+					data-name="Second slide"
+				>
+					<h3>With custom activity name</h3>
+					<pre><xmp><section
+	data-xapi="advanced.slide"
+	data-name="Second slide"
+/></xmp></pre>
+					<p>Refresh the Statement Viewer to see your new statement</p>
+					<p>Closed your browser? <a target="_blank" href="https://xapi.com/wp-content/assets/ClientPrototypes/StatementViewer/index.html">Here you go</a>
+				</section>
+				<section
+					data-xapi="advanced.slide"
+					data-name="Third slide"
+					data-description="We're moving on!"
+				>
+					<h3>With custom activity description</h3>
+					<pre><xmp><section
+	data-xapi="advanced.slide"
+	data-name="Description explanation"
+	data-description="We're moving on!"
+/></xmp></pre>
+					<p>You know the drill. This time click the statement.</p>
+				</section>
 			</section>
-			<section>
-				<p class="fragment">fragment</p>
-				<p class="fragment" data-xapi="completed.application">fragment</p>
-			</section>
-			<section data-xapi="watched.lesson">Slide </section>
-			<section data-xapi="multipleStatement">Slide </section>
-			<section data-xapi="watched.lesson">Slide </section>
-			<section data-xapi="staticFn">Slide </section>
+
+
+
+
+			<section data-xapi="staticFn" name="Static function explained" description="Slide describing using functions to send a statement">Slide </section>
+			<section data-xapi="multipleStatement">BUG!!! </section>
 			<section>Slide<button onclick="return xapi.checkQuiz(event, 'once')">click me</button></section>
+
+			<section>
+        <section>
+					<p>BUG!!!</p>
+          <p>Being based on web standards, it plays well with other standards based web technologies</p>
+          <p>Youtube video</p>
+          <div id="player"></div>
+        </section>
+      </section>
+
+			<section>
+				<p class="fragment" data-fragment-index="3">fragment 3</p>
+				<p class="fragment" data-fragment-index="1" data-xapi="completed.application">fragment 1</p>
+				<p class="fragment" data-fragment-index="2">fragment 2</p>
+			</section>
+
 			<section>
 				<section>Other stuff</section>
 				<section data-xapi="nonExistentFn">Slide </section>
 			</section>
+
 		</div>
 	</div>
 
@@ -54,6 +104,7 @@
 		// - https://github.com/hakimel/reveal.js#configuration
 		// - https://github.com/hakimel/reveal.js#dependencies
 		Reveal.initialize({
+			// slideNumber: true,
 			dependencies: [{
 					src: 'plugin/xapi/xapi.js'
 				},
@@ -77,15 +128,23 @@
 			],
 			xapi: {
 				lrs: {
+					endpoint: "https://cloud.scorm.com/tc/75GX2IO6XT/sandbox", // testing endpoint
+					authUser: "HpUb-rmEJvF5uUZu8us",
+					authPassword: "v0yiqfVh2gCuAfCROFY",
 					// endpoint: "https://cloud.scorm.com/tc/public/", //https://xapi.com/wp-content/assets/ClientPrototypes/StatementViewer/index.html
-					endpoint: "https://lrs.adlnet.gov/xapi/", // http://adlnet.github.io/xapi-statement-viewer/
-					authUser: "xapi-tools",
-					authPassword: "xapi-tools",
+					// endpoint: "https://lrs.adlnet.gov/xapi/", // http://adlnet.github.io/xapi-statement-viewer/
+					// authUser: "xapi-tools",
+					// authPassword: "xapi-tools",
+
 					actor: {
 						"mbox": "mailto:love2learn@example.com",
 						"name": "anonymous learner"
 					},
 				},
+				dev_mode: true,
+				version: '0.0.1',
+				send_enabled: true,
+				// getActorOnInit: true,
 				lang_ISO: 'en',
 				local_ISO: 'US',
 				/*
@@ -115,9 +174,6 @@
 				 *  - debug feedback
 				 * @type {Boolean}
 				 */
-				dev_mode: true,
-				send_enabled: true,
-				// getActorOnInit: true,
 				statements: {
 					staticFn: () => {
 						console.log('staticFn')
@@ -132,10 +188,58 @@
 						const passed = true || false
 						return passed ? 'watched.lesson' : null
 					},
+					startedVideo: () => {
+            return 'started.video'
+          },
 				},
 			}
 		});
 	</script>
+
+
+	  <script>
+	      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: 'y42MSS1DJqc',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        // event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          xapi.startedVideo()
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+    </script>
+
 </body>
 
 </html>

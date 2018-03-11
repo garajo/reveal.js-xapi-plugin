@@ -125,8 +125,6 @@
       <section>
         <section>
           <p>Being based on web standards, it plays well with other standards based web technologies</p>
-        </section>
-        <section class="frament">
           <p>Youtube video</p>
           <div id="player"></div>
         </section>
@@ -227,7 +225,8 @@
             "name": "anonymous learner"
           },
         },
-        // dev_mode: true,
+        dev_mode: true,
+        version: '0.0.1',
         lang_ISO: 'en',
         local_ISO: 'US',
         /*
@@ -257,9 +256,6 @@
         statements: {
           startedVideo: () => {
             return 'started.video'
-          },
-          completedVideo: () => {
-            return 'completed.video'
           },
           multipleStatement: () => {
             return ['answered.question', 'attended.lesson']
