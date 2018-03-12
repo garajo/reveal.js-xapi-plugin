@@ -127,7 +127,7 @@ test('dotVerbActivity() returns correctly', t => {
 
   const concept_deconstr = {'uniqueIRI': concepts}
 
-  t.deepEqual(dotVerbActivity(['completed','assessment'], langISO, profile_data),
+  t.deepEqual(dotVerbActivity({ verb: 'completed', activity: 'assessment'}, langISO, profile_data),
     [
       {[verb]: reduceByTerm(verb, 'verb', langISO, concept_deconstr)},
       {[activity]: reduceByTerm(activity, 'activitytype', langISO, concept_deconstr)},
