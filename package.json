@@ -14,7 +14,7 @@
     "test": "NODE_PATH=./ ava",
     "test:tap": "npm test -- --tap",
     "test:ones": "npm test -- --watch",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm test -- --watch"
   },
   "keywords": [
     "reveal.js",
