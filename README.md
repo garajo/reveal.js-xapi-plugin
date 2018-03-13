@@ -27,9 +27,14 @@ You can open `revealJS/index.html` in a browser, and send statements.
   - any incorrect implementations
   - other statement parts that can be included
 
-## Contributions
+## Limitations
+- default as client side application, it is inherently insecure
+- can be used for temporal data gathering from learners, such as MOOCs
+- patching with tokens, or other techniques; it can be securely served
 
-### Unit Tests
+## Feedback and Pull Requests welcome
 
 ### Need help
 - See [RoadMap](#roadmap)
+- Models
+- Preact/AVA integration
