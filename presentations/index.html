@@ -41,7 +41,7 @@
 				</section>
 				<section
 					data-xapi="advanced.slide"
-					data-name="Second slide"
+					data-name="Basic statement"
 				>
 					<h3>With custom activity name</h3>
 					<pre><xmp><section
@@ -53,7 +53,7 @@
 				</section>
 				<section
 					data-xapi="advanced.slide"
-					data-name="Third slide"
+					data-name="Name explanation"
 					data-description="We're moving on!"
 				>
 					<h3>With custom activity description</h3>
@@ -65,19 +65,51 @@
 					<p>You know the drill. This time click the statement.</p>
 				</section>
 			</section>
+			<section data-xapi="staticFn" data-name="Static function explained" data-description="Slide describing using functions to send a statement">
+				<h4>Sending statement from a function call</h4>
+				<pre><xmp><section
+	data-xapi="staticFn"
+	data-name="Static function explanation"
+	data-description="Slide describing using functions
+		to send a statement"
+/></xmp></pre>
+				<pre>
+staticFn: () => {
+	return 'advanced.slide'
+}</pre>
+			</section>
+			<section data-xapi="multipleStatement" data-name="Multiple statement function explained" data-description="Slide describing using functions to send multiple statement" >
+				<h4>Sending multiple statements from a function call</h4>
+				<pre><xmp><section
+	data-xapi="multipleStatement"
+	data-name="Multiple statement function explanation"
+	data-description="Slide describing using functions
+		to send multiple statement"
+/></xmp></pre>
+				<pre>
+multipleStatement: () => {
+	return ['answered.question', 'attended.lesson']
+}</pre>
+			</section>
+			<section>
+				<h4>Sending statement after some custom logic</h4>
+				<button onclick="return xapi.mockCheckQuiz(event, 'once')">click me (once)</button>
+				<button onclick="return xapi.mockCheckQuiz(event)">click me (multiple)</button>
+				<pre><xmp><button
+	onclick="return xapi.mockCheckQuiz(event, 'once')"
+>click me (once)</button></xmp></pre>
+<br />
+				<pre>
+mockCheckQuiz: () => {
+	return Math.round(Math.random()) ? 'watched.lesson' : 'skipped.lesson'
+}</pre>
+			</section>
 
 
-
-
-			<section data-xapi="staticFn" name="Static function explained" description="Slide describing using functions to send a statement">Slide </section>
-			<section data-xapi="multipleStatement">BUG!!! </section>
-			<section>Slide<button onclick="return xapi.checkQuiz(event, 'once')">click me</button></section>
 
 			<section>
         <section>
-					<p>BUG!!!</p>
-          <p>Being based on web standards, it plays well with other standards based web technologies</p>
-          <p>Youtube video</p>
+          <p>Being based on web standards, it fits well with other web technologies, like YouTube videos</p>
           <div id="player"></div>
         </section>
       </section>
@@ -144,6 +176,7 @@
 				dev_mode: true,
 				version: '0.0.1',
 				send_enabled: true,
+				statement_helper: false,
 				// getActorOnInit: true,
 				lang_ISO: 'en',
 				local_ISO: 'US',
@@ -176,21 +209,17 @@
 				 */
 				statements: {
 					staticFn: () => {
-						console.log('staticFn')
-						return true ? 'attempted.attempt' : ''
+						return 'advanced.slide'
 					},
 					multipleStatement: () => {
-						console.log('multipleStatement')
 						return ['answered.question', 'attended.lesson']
 					},
-					checkQuiz: () => {
-						console.log('checkQuiz')
-						const passed = true || false
-						return passed ? 'watched.lesson' : null
+					mockCheckQuiz: () => {
+						return Math.round(Math.random()) ? 'watched.lesson' : 'skipped.lesson'
 					},
 					startedVideo: () => {
-            return 'started.video'
-          },
+						return 'started.video'
+					},
 				},
 			}
 		});
@@ -214,29 +243,17 @@
           width: '640',
           videoId: 'y42MSS1DJqc',
           events: {
-            'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
           }
         });
       }
 
-      // 4. The API will call this function when the video player is ready.
-      function onPlayerReady(event) {
-        // event.target.playVideo();
-      }
-
-      // 5. The API calls this function when the player's state changes.
-      //    The function indicates that when playing a video (state=1),
-      //    the player should play for six seconds and then stop.
       var done = false;
       function onPlayerStateChange(event) {
         if (event.data == YT.PlayerState.PLAYING && !done) {
           xapi.startedVideo()
           done = true;
         }
-      }
-      function stopVideo() {
-        player.stopVideo();
       }
     </script>
 
