@@ -41,19 +41,19 @@
 				</section>
 				<section
 					data-xapi="advanced.slide"
-					data-name="Basic statement"
+					data-name="Name explanation"
 				>
 					<h3>With custom activity name</h3>
 					<pre><xmp><section
 	data-xapi="advanced.slide"
-	data-name="Second slide"
+	data-name="Name explanation"
 /></xmp></pre>
 					<p>Refresh the Statement Viewer to see your new statement</p>
 					<p>Closed your browser? <a target="_blank" href="https://xapi.com/wp-content/assets/ClientPrototypes/StatementViewer/index.html">Here you go</a>
 				</section>
 				<section
 					data-xapi="advanced.slide"
-					data-name="Name explanation"
+					data-name="Description explanation"
 					data-description="We're moving on!"
 				>
 					<h3>With custom activity description</h3>
@@ -62,7 +62,7 @@
 	data-name="Description explanation"
 	data-description="We're moving on!"
 /></xmp></pre>
-					<p>You know the drill. This time click the statement.</p>
+					<p>You know the drill. This time click the statement to see the all the data.</p>
 				</section>
 			</section>
 			<section data-xapi="staticFn" data-name="Static function explained" data-description="Slide describing using functions to send a statement">
@@ -95,18 +95,18 @@ multipleStatement: () => {
 				<h4>Sending statement after some custom logic</h4>
 				<button onclick="return xapi.mockCheckQuiz(event, 'once')">click me (once)</button>
 				<button onclick="return xapi.mockCheckQuiz(event)">click me (multiple)</button>
-				<pre><xmp><button
-	onclick="return xapi.mockCheckQuiz(event, 'once')"
->click me (once)</button></xmp></pre>
+				<pre><xmp><button onclick="return xapi.mockCheckQuiz(event, 'once')" >
+	click me (once)
+</button></xmp></pre>
+				<pre><xmp><button onclick="return xapi.mockCheckQuiz(event)">
+	click me (multiple)
+</button></xmp></pre>
 <br />
 				<pre>
 mockCheckQuiz: () => {
 	return Math.round(Math.random()) ? 'watched.lesson' : 'skipped.lesson'
 }</pre>
 			</section>
-
-
-
 			<section>
         <section>
           <p>Being based on web standards, it fits well with other web technologies, like YouTube videos</p>
@@ -179,10 +179,9 @@ mockCheckQuiz: () => {
 					},
 				},
 				version: '0.0.1',
-				// dev_mode: true,
-				// send_enabled: false,
-				// statement_helper: false,
-
+				dev_mode: true,
+				send_enabled: true,
+				statement_helper: false,
 				// getActorOnInit: true,
 				lang_ISO: 'en',
 				local_ISO: 'US',
