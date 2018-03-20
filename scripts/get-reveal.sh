@@ -1,3 +1,5 @@
+#!/bin/sh
+
 rm -rf ./revealJS
 mkdir ./temp
 curl -s https://api.github.com/repos/hakimel/reveal.js/releases/latest \

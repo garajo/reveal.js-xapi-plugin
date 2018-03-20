@@ -9,7 +9,7 @@
     "dev:reveal:start": "./node_modules/.bin/reload -p 8084 -d ./revealJS/",
     "dev": "npm start",
     "dist": "rimraf ./revealJS/plugin/xapi/xapi.js & webpack --config ./webpack.config.js",
-    "dist-demo": "cp -r ./revealJS/ dist/demo && cp ./presentations/*.html ./dist/demo/ && bestzip dist/demo.zip ./dist/demo && rimraf ./dist/demo",
+    "dist-demo": "bash ./scripts/zipdemo.sh",
     "preinstall": "bash ./scripts/get-reveal.sh",
     "start": "NODE_PATH=./ npm run dev:plugin & npm run dev:reveal:start",
     "test": "NODE_PATH=./ ava",
