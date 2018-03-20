@@ -3,8 +3,6 @@
 [demo](https://github.com/garajo/reveal.js-xapi-plugin/raw/master/dist/demo.zip)
 
 
-`npm run dist`
-
 ## Features
 
 - Bring HTML and xAPI capabilities to Instructional/Course Designers
