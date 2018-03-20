@@ -215,61 +215,58 @@
         }
       ],
       xapi: {
-        lrs: {
-          endpoint: "https://cloud.scorm.com/tc/public/", //https://xapi.com/wp-content/assets/ClientPrototypes/StatementViewer/index.html
-          // endpoint: "https://lrs.adlnet.gov/xapi/", // http://adlnet.github.io/xapi-statement-viewer/
+				lrs: {
+					endpoint: "https://cloud.scorm.com/tc/public/", //https://xapi.com/wp-content/assets/ClientPrototypes/StatementViewer/index.html
+					// endpoint: "https://lrs.adlnet.gov/xapi/", // http://adlnet.github.io/xapi-statement-viewer/
 					// authUser: "xapi-tools",
 					// authPassword: "xapi-tools",
-          actor: {
-            "mbox": "mailto:love2learn@example.com",
-            "name": "anonymous learner"
-          },
-        },
-        dev_mode: true,
-        version: '0.0.1',
-        lang_ISO: 'en',
-        local_ISO: 'US',
-        /*
-        	possible formats:
-        	// selects from list of provided with Plugin
-        		- ['cmi5']
-        	// user provided key-val list of profiles and urls
-        		- [{
-        				'cmi5': 'https://raw.githubusercontent.com/adlnet/xapi-authored-profiles/master/cmi5/cmi5.jsonld',
-        			}]
 
-        */
-        profiles: ['scorm', 'adl', 'tincan', 'activity-streams', 'acrossx', 'dod-isd', 'video'],
-        /*
-        	profiles: {
-        		'cmi5': 'https://raw.githubusercontent.com/adlnet/xapi-authored-profiles/master/cmi5/cmi5.jsonld'
-        	},
-        */
-        /**
-         * Controls
-         *  - statement helper
-         *  - sending statements over xhr
-         *  - debug feedback
-         * @type {Boolean}
-         */
+					actor: {
+						"mbox": "mailto:love2learn@example.com",
+						"name": "anonymous learner"
+					},
+				},
+        version: '0.0.1',
+				dev_mode: true,
+				// send_enabled: false,
+				// statement_helper: false,
+
         // getActorOnInit: true,
-        statements: {
-          startedVideo: () => {
-            return 'started.video'
-          },
-          multipleStatement: () => {
-            return ['answered.question', 'attended.lesson']
-          },
-          checkQuiz: () => {
-            const passed = true || false
-            return passed ? 'watched.lesson' : null
-          },
-          visitLink: (arg) => {
-            window.open(arg, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
-            return 'navigated.link'
-          }
-        },
-      }
+				lang_ISO: 'en',
+				local_ISO: 'US',
+				/*
+					possible formats:
+					// selects from list of provided with Plugin
+						- ['cmi5']
+					// user provided key-val list of profiles and urls
+						- [{
+								'cmi5': 'https://raw.githubusercontent.com/adlnet/xapi-authored-profiles/master/cmi5/cmi5.jsonld',
+							}]
+
+				*/
+					profiles: ['scorm', 'adl', 'tincan', 'activity-streams', 'acrossx', 'dod-isd', 'video'],
+				/*
+					profiles: [{
+							'cmi5': 'https://raw.githubusercontent.com/adlnet/xapi-authored-profiles/master/cmi5/cmi5.jsonld',
+						}],
+				*/
+				authority: {
+					name: "Instructional Designer",
+					mbox: "mailto:hello@example.com"
+				},
+				/**
+				 * Controls
+				 *  - statement helper
+				 *  - sending statements over xhr
+				 *  - debug feedback
+				 * @type {Boolean}
+				 */
+				statements: {
+					startedVideo: () => {
+						return 'started.video'
+					},
+				},
+			}
     });
   </script>
 
@@ -290,15 +287,9 @@
           width: '640',
           videoId: 'y42MSS1DJqc',
           events: {
-            'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
           }
         });
-      }
-
-      // 4. The API will call this function when the video player is ready.
-      function onPlayerReady(event) {
-        // event.target.playVideo();
       }
 
       // 5. The API calls this function when the player's state changes.
@@ -310,9 +301,6 @@
           xapi.startedVideo()
           done = true;
         }
-      }
-      function stopVideo() {
-        player.stopVideo();
       }
     </script>
 

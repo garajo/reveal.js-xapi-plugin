@@ -116,7 +116,15 @@ mockCheckQuiz: () => {
 
 			<section>
 				<p class="fragment" data-fragment-index="3">fragment 3</p>
-				<p class="fragment" data-fragment-index="1" data-xapi="completed.application">fragment 1</p>
+				<p
+					class="fragment"
+					data-fragment-index="1"
+					data-xapi="entered.section"
+					data-name="Fragmented section"
+					data-description="How's that for control?"
+				>
+					fragment 1
+				</p>
 				<p class="fragment" data-fragment-index="2">fragment 2</p>
 			</section>
 
@@ -170,10 +178,11 @@ mockCheckQuiz: () => {
 						"name": "anonymous learner"
 					},
 				},
-				dev_mode: true,
 				version: '0.0.1',
-				send_enabled: true,
-				statement_helper: false,
+				dev_mode: true,
+				// send_enabled: false,
+				// statement_helper: false,
+
 				// getActorOnInit: true,
 				lang_ISO: 'en',
 				local_ISO: 'US',
