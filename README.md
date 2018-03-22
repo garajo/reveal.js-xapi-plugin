@@ -1,3 +1,5 @@
+## This is in Alpha development!
+
 ## Download the demo:
 
 [demo](https://github.com/garajo/reveal.js-xapi-plugin/raw/master/dist/demo.zip)
