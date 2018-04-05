@@ -88,7 +88,7 @@ staticFn: () => {
 /></xmp></pre>
 				<pre>
 multipleStatement: () => {
-	return ['answered.question', 'attended.lesson']
+	return ['attended.lesson', 'advanced.slide']
 }</pre>
 			</section>
 			<section>
@@ -113,26 +113,24 @@ mockCheckQuiz: () => {
           <div id="player"></div>
         </section>
       </section>
-
 			<section>
 				<p class="fragment" data-fragment-index="3">fragment 3</p>
+				<p data-fragment-index="1">fragment 1</p>
 				<p
 					class="fragment"
-					data-fragment-index="1"
+					data-fragment-index="2"
 					data-xapi="entered.section"
 					data-name="Fragmented section"
-					data-description="How's that for control?"
+					data-description="Statements can be made at the granular fragment level."
 				>
-					fragment 1
+					fragment 2 (with statement)
 				</p>
-				<p class="fragment" data-fragment-index="2">fragment 2</p>
 			</section>
-
 			<section>
-				<section>Other stuff</section>
-				<section data-xapi="nonExistentFn">Slide </section>
+				<section data-xapi="nonExistentFn">
+					<p>This section calls a non existing funtion.</p>
+				</section>
 			</section>
-
 		</div>
 	</div>
 
@@ -167,65 +165,65 @@ mockCheckQuiz: () => {
 				}
 			],
 			xapi: {
-				lrs: {
-					endpoint: "https://cloud.scorm.com/tc/public/", //https://xapi.com/wp-content/assets/ClientPrototypes/StatementViewer/index.html
-					// endpoint: "https://lrs.adlnet.gov/xapi/", // http://adlnet.github.io/xapi-statement-viewer/
-					// authUser: "xapi-tools",
-					// authPassword: "xapi-tools",
+			  lrs: {
+			    endpoint: "https://cloud.scorm.com/tc/public/", // viewer endpoint: https://xapi.com/wp-content/assets/ClientPrototypes/StatementViewer/index.html
+			    // endpoint: "https://lrs.adlnet.gov/xapi/", // viewer endpoint: http://adlnet.github.io/xapi-statement-viewer/
+			    // authUser: "xapi-tools",
+			    // authPassword: "xapi-tools",
 
-					actor: {
-						"mbox": "mailto:love2learn@example.com",
-						"name": "anonymous learner"
-					},
-				},
-				version: '0.0.1',
-				dev_mode: true,
-				send_enabled: true,
-				statement_helper: false,
-				// getActorOnInit: true,
-				lang_ISO: 'en',
-				local_ISO: 'US',
-				/*
-					possible formats:
-					// selects from list of provided with Plugin
-						- ['cmi5']
-					// user provided key-val list of profiles and urls
-						- [{
-								'cmi5': 'https://raw.githubusercontent.com/adlnet/xapi-authored-profiles/master/cmi5/cmi5.jsonld',
-							}]
+			    actor: {
+			      "mbox": "mailto:love2learn@example.com",
+			      "name": "anonymous learner"
+			    },
+			  },
+			  version: '0.0.1',
+			  dev_mode: true,
+			  send_enabled: true,
+			  statement_helper: false,
+			  // getActorOnInit: true,
+			  lang_ISO: 'en',
+			  local_ISO: 'US',
+			  /*
+			    possible formats:
+			    // selects from list of provided with Plugin
+			      - ['cmi5']
+			    // user provided key-val list of profiles and urls
+			      - [{
+			          'cmi5': 'https://raw.githubusercontent.com/adlnet/xapi-authored-profiles/master/cmi5/cmi5.jsonld',
+			        }]
 
-				*/
-					profiles: ['scorm', 'adl', 'tincan', 'activity-streams', 'acrossx', 'dod-isd', 'video'],
-				/*
-					profiles: [{
-							'cmi5': 'https://raw.githubusercontent.com/adlnet/xapi-authored-profiles/master/cmi5/cmi5.jsonld',
-						}],
-				*/
-				authority: {
-					name: "Instructional Designer",
-					mbox: "mailto:hello@example.com"
-				},
-				/**
-				 * Controls
-				 *  - statement helper
-				 *  - sending statements over xhr
-				 *  - debug feedback
-				 * @type {Boolean}
-				 */
-				statements: {
-					staticFn: () => {
-						return 'advanced.slide'
-					},
-					multipleStatement: () => {
-						return ['advanced.slide', 'attended.lesson']
-					},
-					mockCheckQuiz: () => {
-						return Math.round(Math.random()) ? 'watched.lesson' : 'skipped.lesson'
-					},
-					startedVideo: () => {
-						return 'started.video'
-					},
-				},
+			  */
+			    profiles: ['scorm', 'adl', 'tincan', 'activity-streams', 'acrossx', 'dod-isd', 'video'],
+			  /*
+			    profiles: [{
+			        'cmi5': 'https://raw.githubusercontent.com/adlnet/xapi-authored-profiles/master/cmi5/cmi5.jsonld',
+			      }],
+			  */
+			  authority: {
+			    name: "Instructional Designer",
+			    mbox: "mailto:hello@example.com"
+			  },
+			  /**
+			   * Controls
+			   *  - statement helper
+			   *  - sending statements over xhr
+			   *  - debug feedback
+			   * @type {Boolean}
+			   */
+			  statements: {
+			    staticFn: () => {
+			      return 'advanced.slide'
+			    },
+			    multipleStatement: () => {
+			      return ['advanced.slide', 'attended.lesson']
+			    },
+			    mockCheckQuiz: () => {
+			      return Math.round(Math.random()) ? 'watched.lesson' : 'skipped.lesson'
+			    },
+			    startedVideo: () => {
+			      return 'started.video'
+			    },
+			  },
 			}
 		});
 	</script>
