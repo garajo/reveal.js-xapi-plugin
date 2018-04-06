@@ -157,8 +157,13 @@ The open standards of HTML, JS, and CSS are strong guarantees to device-content 
 
 You can open `revealJS/index.html` in a browser, and send statements.
 
-
 ### Need help
 - See [RoadMap](#roadmap)
 - Models
 - Preact/AVA integration
+
+#### Thanks to
+- Kristin Anthony
+- Craig Wiggins
+
+for their review and advice
