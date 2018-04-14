@@ -1,4 +1,4 @@
-## This is in Alpha development!
+## This is experimental!
 
 ## TLDR; Download the demo and send statements
 
