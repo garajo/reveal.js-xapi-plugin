@@ -1,6 +1,6 @@
 ## This is experimental!
 
-## TLDR; Download the demo and send statements
+## TLDR; Download the demo, extract, open index.html, and send statements
 
 [demo](https://github.com/garajo/reveal.js-xapi-plugin/raw/master/dist/demo.zip)
 
