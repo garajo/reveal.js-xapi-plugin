@@ -134,6 +134,13 @@ cd reveal.js-xapi-plugin
 npm i
 ```
 
+To start a local development server, run
+```
+npm run dev
+```
+visit `localhost:8084` on your browser
+
+
 ## Feedback and Pull Requests welcome
 
 ## <a name="roadmap"></a>Roadmap
