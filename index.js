@@ -26,7 +26,4 @@ const plugin = (function() {
     )
   })()
 
-
-window.temp = plugin
-
 module.exports = plugin
