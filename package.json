@@ -8,7 +8,7 @@
     "dev:plugin": "webpack --config ./webpack.config.js -w",
     "dev:reveal:start": "./node_modules/.bin/reload -p 8084 -d ./revealJS/",
     "dev": "npm start",
-    "dist": "rimraf ./revealJS/plugin/xapi/xapi.js & webpack --config ./webpack.config.js",
+    "dist": "rimraf ./revealJS/plugin/xapi/xapi.* ./dist/plugin/xapi/xapi.* & webpack --config ./webpack.config.js && cp ./dist/plugin/xapi/xapi.js ./revealJS/plugin/xapi/xapi.js && mv ./dist/plugin/xapi/xapi.js.map ./revealJS/plugin/xapi/xapi.js.map",
     "dist-demo": "npm run update-presos && bash ./scripts/zipdemo.sh",
     "preinstall": "bash ./scripts/get-reveal.sh",
     "start": "NODE_PATH=./ npm run dev:plugin & npm run dev:reveal:start",
