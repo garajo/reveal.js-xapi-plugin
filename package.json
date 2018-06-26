@@ -11,6 +11,7 @@
     "dist": "rimraf ./revealJS/plugin/xapi/xapi.* ./dist/plugin/xapi/xapi.* & webpack --config ./webpack.config.js && cp ./dist/plugin/xapi/xapi.js ./revealJS/plugin/xapi/xapi.js && mv ./dist/plugin/xapi/xapi.js.map ./revealJS/plugin/xapi/xapi.js.map",
     "dist-demo": "npm run update-presos && bash ./scripts/zipdemo.sh",
     "preinstall": "bash ./scripts/get-reveal.sh",
+    "postinstall": "npm run dist",
     "start": "NODE_PATH=./ npm run dev:plugin & npm run dev:reveal:start",
     "test": "NODE_PATH=./ ava",
     "test:tap": "npm test -- --tap",
